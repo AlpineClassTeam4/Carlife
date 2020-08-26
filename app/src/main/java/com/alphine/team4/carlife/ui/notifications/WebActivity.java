@@ -40,6 +40,7 @@ public class WebActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
         webView = (WebView) findViewById(R.id.webView);
+        webView.getSettings().setJavaScriptEnabled(true);
         navToolbar = (Toolbar) findViewById(R.id.toolbar_webView);
         commentToolBar = (Toolbar) findViewById(R.id.toolbar_webComment);
         //将底部评论框的toolbar放在主界面上

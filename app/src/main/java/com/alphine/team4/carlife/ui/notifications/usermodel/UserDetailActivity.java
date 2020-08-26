@@ -67,7 +67,7 @@ public class UserDetailActivity extends BaseActivity {
         setContentView(R.layout.activity_user_detail);
         detailToolbar = findViewById(R.id.userData_toolbar);
         detailToolbar.setTitle("个人信息");
-        setSupportActionBar(detailToolbar);
+        //setSupportActionBar(detailToolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
