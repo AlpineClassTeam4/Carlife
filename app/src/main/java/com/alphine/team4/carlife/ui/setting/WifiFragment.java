@@ -2,11 +2,15 @@ package com.alphine.team4.carlife.ui.setting;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.alphine.team4.carlife.R;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -25,6 +29,7 @@ public class WifiFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Button button;
 
     public WifiFragment() {
         // Required empty public constructor
@@ -62,7 +67,20 @@ public class WifiFragment extends Fragment {
                              Bundle savedInstanceState) {
         ((CollapsingToolbarLayout) requireActivity().findViewById(R.id.CollapsingToolbarLayout))
                 .setTitle("WIFI");
+//        button=requireActivity().findViewById(R.id.button);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(requireActivity(),"开始扫描",Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_wifi, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 }
