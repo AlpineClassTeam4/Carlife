@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alphine.team4.carlife.R;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +60,8 @@ public class BluethoothFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        ((CollapsingToolbarLayout) requireActivity().findViewById(R.id.CollapsingToolbarLayout))
+                .setTitle("BlueThooth");
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_bluethooth, container, false);
     }

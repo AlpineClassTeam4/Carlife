@@ -1,6 +1,7 @@
 package com.alphine.team4.carlife.ui.setting;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -19,6 +20,9 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
+        // 设置新的 toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         navController = Navigation.findNavController(this, R.id.setting_fragment);
         DrawerLayout drawerLayout = findViewById(R.id.DrawerLayout);
         // appBarConfiguration 自动获取 toolbar 并将各个 Fragment 页面注册到其中

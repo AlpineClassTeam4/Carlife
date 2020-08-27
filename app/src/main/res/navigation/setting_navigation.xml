@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_bluethooth" />
     <fragment
         android:id="@+id/userFragment"
-        android:name="com.alphine.team4.carlife.UserFragment"
+        android:name="com.alphine.team4.carlife.ui.setting.UserFragment"
         android:label="fragment_user"
         tools:layout="@layout/fragment_user" />
 </navigation>
