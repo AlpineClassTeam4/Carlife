@@ -67,14 +67,6 @@ public class WifiFragment extends Fragment {
                              Bundle savedInstanceState) {
         ((CollapsingToolbarLayout) requireActivity().findViewById(R.id.CollapsingToolbarLayout))
                 .setTitle("WIFI");
-//        button=requireActivity().findViewById(R.id.button);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(requireActivity(),"开始扫描",Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_wifi, container, false);
     }
