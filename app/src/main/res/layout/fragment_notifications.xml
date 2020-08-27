@@ -13,7 +13,7 @@
         android:layout_width="164dp"
         android:layout_height="43dp"
         android:background="@color/custom_float_bg"
-        android:text="TextView"
+        android:text="跳过广告"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
