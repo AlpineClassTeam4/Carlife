@@ -1,5 +1,6 @@
 package com.alphine.team4.carlife.ui.dashboard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.alphine.team4.carlife.R;
+import com.alphine.team4.carlife.ui.dashboard.activity.MusicActivity;
 
 public class DashboardFragment extends Fragment {
 
@@ -28,6 +30,12 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getActivity(), MusicActivity.class));
+                    }
+                });
             }
         });
         return root;

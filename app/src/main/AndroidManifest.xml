@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
     package="com.alphine.team4.carlife">
+
     <uses-permission android:name="android.permission.INTERNET" /> <!-- SD卡写入:https://blog.csdn.net/haoxuhong/article/details/79864113 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Carlife"
+        tools:replace="android:label"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name="com.alphine.team4.carlife.ui.notifications.usermodel.EditArticleActivity" />
-        <activity android:name="com.alphine.team4.carlife.ui.notifications.usermodel.ArticleDetailActivity" />
-        <activity android:name="com.alphine.team4.carlife.ui.notifications.usermodel.ArticleActivity" />
-        <activity android:name="com.alphine.team4.carlife.ui.notifications.usermodel.UserFavoriteActivity" />
-        <activity android:name="com.alphine.team4.carlife.ui.notifications.usermodel.UserDetailActivity" />
-        <activity android:name="com.alphine.team4.carlife.ui.notifications.usermodel.RegisterActivity" />
-        <activity android:name="com.alphine.team4.carlife.ui.notifications.usermodel.LoginActivity" />
-        <activity android:name="com.alphine.team4.carlife.ui.notifications.WebActivity" />
-        <activity android:name="com.alphine.team4.carlife.ui.notifications.MainActivity" />
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ui.dashboard.activity.PlayActivity"></activity>
+        <activity android:name=".ui.dashboard.activity.MusicActivity" />
+        <activity android:name=".ui.notifications.usermodel.EditArticleActivity" />
+        <activity android:name=".ui.notifications.usermodel.ArticleDetailActivity" />
+        <activity android:name=".ui.notifications.usermodel.ArticleActivity" />
+        <activity android:name=".ui.notifications.usermodel.UserFavoriteActivity" />
+        <activity android:name=".ui.notifications.usermodel.UserDetailActivity" />
+        <activity android:name=".ui.notifications.usermodel.RegisterActivity" />
+        <activity android:name=".ui.notifications.usermodel.LoginActivity" />
+        <activity android:name=".ui.notifications.WebActivity" />
+        <activity android:name=".ui.notifications.MainActivity" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask">

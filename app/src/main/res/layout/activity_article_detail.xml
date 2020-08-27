@@ -103,14 +103,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 app:cardCornerRadius="8dp" >
-            <TextView
-                android:id="@+id/article_content_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:textSize="15sp"
-                android:textColor="@color/colorBlack"
-                />
+
+                <TextView
+                    android:id="@+id/article_content_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15sp" />
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>

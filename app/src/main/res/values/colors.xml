@@ -5,8 +5,12 @@
     <color name="colorAccent">#D81B60</color>
 
     <!--添加颜色-->
-    <color name="colorRed">#F00</color>
+    <color name="colorRed">#FF0000</color>
     <color name="colorBlack">#000</color>
     <color name="colorWhite">#FFF</color>
     <color name="colorGray">#DCDCDC</color>
+
+    <color name="grey">#9E9E9E</color>
+    <color name="white_50p">#80FFFFFF</color>
+
 </resources>
