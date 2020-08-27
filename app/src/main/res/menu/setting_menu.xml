@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/userFragment"
+        android:title="User" />
+    <item
+        android:id="@+id/wifiFragment"
+        android:title="WIFI" />
+    <item
+        android:id="@+id/bluethoothFragment"
+        android:title="BlueThooth" />
+</menu>

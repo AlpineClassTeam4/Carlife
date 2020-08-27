@@ -83,7 +83,7 @@ public class MainActivity extends BaseActivity {
         //toolbar = findViewById(R.id.toolbar);
 
         //注意：只需第一次创建或升级本地数据库，第二次运行就注释掉
-        Connector.getDatabase();
+        //Connector.getDatabase();
         //Toast.makeText(MainActivity.this, "创建数据库成功", Toast.LENGTH_LONG).show();
 
         //获取抽屉布局实例
