@@ -15,9 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.setting.SettingActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
+        <activity android:name=".ui.setting.SettingActivity"></activity>
         <activity android:name=".ui.dashboard.activity.PlayActivity"></activity>
         <activity android:name=".ui.dashboard.activity.MusicActivity" />
         <activity android:name=".ui.notifications.usermodel.EditArticleActivity" />
@@ -45,4 +43,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
