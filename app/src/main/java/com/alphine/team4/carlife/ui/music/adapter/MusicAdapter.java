@@ -1,4 +1,4 @@
-package com.alphine.team4.carlife.ui.dashboard.adapter;
+package com.alphine.team4.carlife.ui.music.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alphine.team4.carlife.R;
-import com.alphine.team4.carlife.ui.dashboard.utils.Common;
-import com.alphine.team4.carlife.ui.dashboard.utils.Music;
+import com.alphine.team4.carlife.ui.music.utils.Common;
+import com.alphine.team4.carlife.ui.music.utils.Music;
 
 import java.util.List;
 

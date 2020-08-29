@@ -1,4 +1,4 @@
-package com.alphine.team4.carlife.ui.dashboard.utils;
+package com.alphine.team4.carlife.ui.music.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

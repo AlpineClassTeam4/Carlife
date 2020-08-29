@@ -1,4 +1,4 @@
-package com.alphine.team4.carlife.ui.dashboard.adapter;
+package com.alphine.team4.carlife.ui.music.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

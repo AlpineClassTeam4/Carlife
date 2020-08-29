@@ -1,4 +1,4 @@
-package com.alphine.team4.carlife.ui.dashboard;
+package com.alphine.team4.carlife.ui.music;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

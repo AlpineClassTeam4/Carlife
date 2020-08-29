@@ -1,4 +1,4 @@
-package com.alphine.team4.carlife.ui.dashboard;
+package com.alphine.team4.carlife.ui.music;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,8 +15,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.alphine.team4.carlife.R;
-import com.alphine.team4.carlife.ui.dashboard.activity.CollectActivity;
-import com.alphine.team4.carlife.ui.dashboard.activity.MusicActivity;
+import com.alphine.team4.carlife.ui.music.activity.CollectActivity;
+import com.alphine.team4.carlife.ui.music.activity.MusicActivity;
 
 public class DashboardFragment extends Fragment implements View.OnClickListener {
 

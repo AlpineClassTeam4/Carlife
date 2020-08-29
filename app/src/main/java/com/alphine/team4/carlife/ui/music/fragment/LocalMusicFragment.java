@@ -1,4 +1,4 @@
-package com.alphine.team4.carlife.ui.dashboard.fragment;
+package com.alphine.team4.carlife.ui.music.fragment;
 
 
 import android.Manifest;
@@ -31,10 +31,10 @@ import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.alphine.team4.carlife.R;
-import com.alphine.team4.carlife.ui.dashboard.activity.PlayActivity;
-import com.alphine.team4.carlife.ui.dashboard.adapter.MusicAdapter;
-import com.alphine.team4.carlife.ui.dashboard.utils.Common;
-import com.alphine.team4.carlife.ui.dashboard.utils.Music;
+import com.alphine.team4.carlife.ui.music.activity.PlayActivity;
+import com.alphine.team4.carlife.ui.music.adapter.MusicAdapter;
+import com.alphine.team4.carlife.ui.music.utils.Common;
+import com.alphine.team4.carlife.ui.music.utils.Music;
 import com.master.permissionhelper.PermissionHelper;
 
 import java.util.List;

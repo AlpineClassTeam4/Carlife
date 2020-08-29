@@ -1,12 +1,4 @@
-package com.alphine.team4.carlife.ui.dashboard.utils;
-
-import android.content.Context;
-import android.database.Cursor;
-import android.provider.MediaStore;
-import android.util.Log;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.alphine.team4.carlife.ui.music.utils;
 
 public class LocalmusicUtils {
 

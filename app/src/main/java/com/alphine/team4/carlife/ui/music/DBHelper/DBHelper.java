@@ -1,4 +1,4 @@
-package com.alphine.team4.carlife.ui.dashboard.DBHelper;
+package com.alphine.team4.carlife.ui.music.DBHelper;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import android.util.Log;
 
-import com.alphine.team4.carlife.ui.dashboard.utils.Common;
-import com.alphine.team4.carlife.ui.dashboard.utils.Music;
+import com.alphine.team4.carlife.ui.music.utils.Common;
+import com.alphine.team4.carlife.ui.music.utils.Music;
 
 public class DBHelper {
     private static final String TAG = "DBHelper";
@@ -77,12 +77,6 @@ public class DBHelper {
                 null,null,null);
         if (c.getCount()>0) return true;
         else return false;
-    }
-
-    public void getCursor(){
-         db.query("music_info", null,null,
-                null,null,null,null);
-
     }
 
     //获取数据库音乐列表

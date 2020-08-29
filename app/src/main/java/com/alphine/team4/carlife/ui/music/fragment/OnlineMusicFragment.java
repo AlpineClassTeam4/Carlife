@@ -1,4 +1,4 @@
-package com.alphine.team4.carlife.ui.dashboard.fragment;
+package com.alphine.team4.carlife.ui.music.fragment;
 
 
 import android.os.Bundle;

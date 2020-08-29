@@ -1,28 +1,18 @@
-package com.alphine.team4.carlife.ui.dashboard.activity;
+package com.alphine.team4.carlife.ui.music.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import android.Manifest;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.alphine.team4.carlife.R;
-import com.alphine.team4.carlife.ui.dashboard.adapter.MusicPagerAdapter;
-import com.alphine.team4.carlife.ui.dashboard.fragment.LocalMusicFragment;
-import com.alphine.team4.carlife.ui.dashboard.fragment.OnlineMusicFragment;
-import com.alphine.team4.carlife.ui.dashboard.utils.Music;
+import com.alphine.team4.carlife.ui.music.adapter.MusicPagerAdapter;
+import com.alphine.team4.carlife.ui.music.fragment.LocalMusicFragment;
+import com.alphine.team4.carlife.ui.music.fragment.OnlineMusicFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,25 +71,6 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
 
             }
         });
-
-        //设置适配器
-//        mlist = LocalmusicUtils.getmusic(this);
-//        musicAdapter = new MusicAdapter(this, mlist);
-//        musicAdapter.notifyDataSetChanged();
-//        mlistView.setAdapter(musicAdapter);
-
-
-        //音乐列表点击事件
-//        mlistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent();
-//                intent.setClass(MusicActivity.this,PlayActivity.class);
-//                intent.putExtra("position",String.valueOf(position));
-//                startActivity(intent);
-//            }
-//        });
-
     }
 
     private void bangdingID(){
@@ -108,6 +79,7 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
         ivSearch = findViewById(R.id.iv_search);
         ivBack = findViewById(R.id.iv_back);
         viewPager = findViewById(R.id.music_viewpager);
+        tvLocalmusic.setTextColor(getResources().getColor(R.color.colorWhite));
     }
 
     private void jianting(){
@@ -134,66 +106,4 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
                 break;
         }
     }
-
-//    class MusicAdapter extends BaseAdapter {
-//
-//        Context context;
-//        List<Music> mlist;
-//
-//        public MusicAdapter(MusicActivity musicActivity, List<Music> mlist) {
-//            this.context = musicActivity;
-//            this.mlist = mlist;
-//        }
-//        @Override
-//        public int getCount() {
-//            return mlist.size();
-//        }
-//
-//        @Override
-//        public Object getItem(int i) {
-//            return mlist.get(i);
-//        }
-//
-//        @Override
-//        public long getItemId(int i) {
-//            return i;
-//        }
-//
-//        @Override
-//        public View getView(int i, View view, ViewGroup viewGroup) {
-//
-//            Musicholder musicholder;
-//
-//            if (view == null) {
-//                musicholder = new Musicholder();
-//                view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.item_music_listview, null);
-//
-//                musicholder.iv_cover = view.findViewById(R.id.iv_cover);
-//                musicholder.tv_title = view.findViewById(R.id.tv_title);
-//                musicholder.tv_artist = view.findViewById(R.id.tv_artist);
-//                //musicholder.tv_duration = view.findViewById(R.id.tv_duration);
-//
-//                view.setTag(musicholder);
-//
-//            } else {
-//                musicholder = (Musicholder) view.getTag();
-//            }
-//
-//            musicholder.iv_cover.setImageResource(R.drawable.default_cover);
-//            musicholder.tv_title.setText(mlist.get(i).music.toString());
-//            musicholder.tv_artist.setText(mlist.get(i).singer.toString());
-//            String time = LocalmusicUtils.formatTime(mlist.get(i).duration);
-//
-//           // musicholder.tv_duration.setText(time);
-//            // musicholder.tv_position.setText(i + 1 + "");
-//
-//            return view;
-//        }
-//
-//        class Musicholder {
-//            TextView  tv_title, tv_artist, tv_duration;
-//            ImageView iv_cover;
-//        }
-//
-//    }
 }

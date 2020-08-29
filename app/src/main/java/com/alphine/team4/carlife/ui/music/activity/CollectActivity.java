@@ -1,9 +1,8 @@
-package com.alphine.team4.carlife.ui.dashboard.activity;
+package com.alphine.team4.carlife.ui.music.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,10 +11,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.alphine.team4.carlife.R;
-import com.alphine.team4.carlife.ui.dashboard.DBHelper.DBHelper;
-import com.alphine.team4.carlife.ui.dashboard.adapter.DBMusicAdapter;
-import com.alphine.team4.carlife.ui.dashboard.utils.Common;
-import com.alphine.team4.carlife.ui.dashboard.utils.Music;
+import com.alphine.team4.carlife.ui.music.DBHelper.DBHelper;
+import com.alphine.team4.carlife.ui.music.adapter.DBMusicAdapter;
+import com.alphine.team4.carlife.ui.music.utils.Common;
+import com.alphine.team4.carlife.ui.music.utils.Music;
 
 import java.util.List;
 
