@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.alphine.team4.carlife">
 
     <uses-permission android:name="android.permission.INTERNET" /> <!-- SD卡写入:https://blog.csdn.net/haoxuhong/article/details/79864113 -->
@@ -10,12 +11,13 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Carlife"
-        tools:replace="android:label"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".ui.dashboard.activity.PlayActivity"></activity>
+        android:usesCleartextTraffic="true"
+        tools:replace="android:label">
+        <activity android:name=".ui.dashboard.activity.CollectActivity"></activity>
+        <activity android:name=".ui.dashboard.activity.PlayActivity" />
         <activity android:name=".ui.dashboard.activity.MusicActivity" />
         <activity android:name=".ui.notifications.usermodel.EditArticleActivity" />
         <activity android:name=".ui.notifications.usermodel.ArticleDetailActivity" />

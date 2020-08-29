@@ -8,7 +8,7 @@ public class Music {
    // public long size;//歌曲所占空间大小
     public int duration;//歌曲时间长度
     //public String path;//歌曲地址
-    public long  albumId;//图片id
+    public int  albumId;//图片id
     public long id;//歌曲id
 
 

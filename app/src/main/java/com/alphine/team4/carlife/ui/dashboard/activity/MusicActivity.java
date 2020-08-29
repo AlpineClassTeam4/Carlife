@@ -32,12 +32,9 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
     TextView tvLocalmusic,tvOnlinemusic;
     ImageView ivSearch,ivBack;
     ViewPager viewPager;
-    List<Music> mlist;
-    //MusicAdapter musicAdapter;
 
     //将Fragment放入List集合中，存放fragment对象
     private List<Fragment> fragmentList = new ArrayList<>();
-    ListView mlistView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +130,7 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
             case R.id.iv_search:
                 break;
             case R.id.iv_back:
+                this.finish();
                 break;
         }
     }
@@ -168,7 +166,7 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
 //
 //            if (view == null) {
 //                musicholder = new Musicholder();
-//                view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.item_listview, null);
+//                view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.item_music_listview, null);
 //
 //                musicholder.iv_cover = view.findViewById(R.id.iv_cover);
 //                musicholder.tv_title = view.findViewById(R.id.tv_title);

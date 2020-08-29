@@ -2,7 +2,11 @@ package com.alphine.team4.carlife.ui.dashboard.fragment;
 
 
 import android.Manifest;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -23,6 +27,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.alphine.team4.carlife.R;
@@ -45,6 +50,7 @@ public class LocalMusicFragment extends Fragment {
     private List<Music> musicList;                                                          //将Music放入List集合中，并实例化List<Music>
     private List<ListView> listViewList;
     private MusicAdapter adapter;
+    private int musicWhich = 0;
 
     public LocalMusicFragment() {
         // Required empty public constructor
@@ -99,10 +105,32 @@ public class LocalMusicFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), PlayActivity.class);
                 //使用putExtra（）传值
                 intent.putExtra("position", position);
+                intent.putExtra("musicWhich",musicWhich);
                 startActivity(intent);
+
+                PendingIntent pendingIntent = PendingIntent.getActivity(getActivity(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                RemoteViews remoteViews = new RemoteViews(getActivity().getPackageName(), R.layout.notification_music_layout);
+                remoteViews.setTextViewText(R.id.nf_title_tv, Common.musicList.get(position).title);
+                remoteViews.setTextViewText(R.id.nf_artist_tv, Common.musicList.get(position).artist);
+                Log.d(TAG, "onItemClick: "+remoteViews);
+                if (Common.musicList.get(position).albumBip != null) {
+                    remoteViews.setImageViewBitmap(R.id.nf_album_imgv, Common.musicList.get(position).albumBip);
+                }
+                //通知
+                Notification.Builder builder = new Notification.Builder(getActivity());
+                builder.setContent(remoteViews);
+                builder.setSmallIcon(R.mipmap.ic_launcher);
+                builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
+                builder.setContentTitle("我的通知");
+                builder.setContentText("正在播放音乐");
+                builder.setContentIntent(pendingIntent);
+                builder.setAutoCancel(true);
+                NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                notificationManager.notify(1, builder.build());
 
             }
         });
+
         adapter = new MusicAdapter(getActivity(), musicList);        //创建MusicAdapter的对象，实现自定义适配器的创建
         listView.setAdapter(adapter);                         //listView绑定适配器
         return view;
@@ -131,14 +159,16 @@ public class LocalMusicFragment extends Fragment {
                 String artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));         //获取歌唱者
                 String album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM));           //获取专辑名
                 int albumID = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID));            //获取专辑图片id
-                int length = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION));
-                String path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
+                int length = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION));             //获取时长
+                long size = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media.SIZE));                 //获取歌曲大小
+                String path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));             //获取歌曲地址
                 //创建Music对象，并赋值
                 Music music = new Music();
                 music.length = length;
                 music.title = title;
                 music.artist = artist;
                 music.album = album;
+                music.size = size;
                 music.path = path;
                 music.albumBip = getAlbumArt(albumID);
                 //将music放入musicList集合中

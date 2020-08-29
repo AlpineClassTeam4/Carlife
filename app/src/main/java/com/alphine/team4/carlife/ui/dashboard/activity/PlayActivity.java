@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alphine.team4.carlife.R;
+import com.alphine.team4.carlife.ui.dashboard.DBHelper.DBHelper;
 import com.alphine.team4.carlife.ui.dashboard.utils.BlurUtil;
 import com.alphine.team4.carlife.ui.dashboard.utils.Common;
 import com.alphine.team4.carlife.ui.dashboard.utils.MergeImage;
@@ -33,9 +34,6 @@ import com.alphine.team4.carlife.ui.dashboard.utils.Music;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-
-import static com.alphine.team4.carlife.ui.dashboard.utils.LocalmusicUtils.formatTime;
 
 public class PlayActivity extends AppCompatActivity implements View.OnClickListener {
     TextView tvTitle,tvArtist;
@@ -48,11 +46,20 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     MediaPlayer mediaPlayer;
     private int i = 0;
     private int playMode = 0;
-    private int buttonWitch = 0;
+    private int buttonWhich = 0;
+    private int musicWhich = 0;
     private boolean isStop;
     private ObjectAnimator objectAnimator = null;
     private RotateAnimation rotateAnimation = null;
     private RotateAnimation rotateAnimation2 = null;
+    DBHelper dbHelper;
+    public String title;//歌曲名
+    public String artist;//歌手
+    public int length;//歌曲时间长度
+    //public long size;//歌曲所占空间大小
+    public String path;//歌曲地址
+    public String album;//专辑名
+    public Bitmap albumBip;//专辑图片
 
     private static final String TAG="123";
 
@@ -73,10 +80,23 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_play);
 
         bingID();
+        dbHelper = new DBHelper(this);
+        dbHelper.open();                            //打开数据库
         Intent intent = getIntent();                                                    //通过getIntent()方法实现intent信息的获取
         position = intent.getIntExtra("position", 0);            //获取position
-
+        musicWhich = intent.getIntExtra("musicWhich",0);         //获取音乐来源  数据库/媒体库
         mediaPlayer = new MediaPlayer();
+        if(musicWhich == 0){
+            title = Common.musicList.get(position).title;
+            artist = Common.musicList.get(position).artist;
+            path = Common.musicList.get(position).path;
+            albumBip = Common.musicList.get(position).albumBip;
+        }else {
+            title = Common.dbmusicList.get(position).title;
+            artist = Common.dbmusicList.get(position).artist;
+            path = Common.dbmusicList.get(position).path;
+            albumBip = Common.dbmusicList.get(position).albumBip;
+        }
         prevAndnextplaying(Common.musicList.get(position).path);
         sbProgress.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {               //seekbar设置监听，实现指哪放到哪
             @Override
@@ -106,6 +126,17 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         tvTitle.setText(Common.musicList.get(position).title);
         tvArtist.setText(Common.musicList.get(position).artist);
         ivPlay.setImageResource(R.drawable.ic_play_btn_pause);
+        //检查数据库信息，更新like按钮状态
+        String inputTitle = Common.musicList.get(position).title;
+        String inputArtist = Common.musicList.get(position).artist;
+        if (dbHelper.checkTitleArtist(inputTitle,inputArtist)){
+            //数据存在
+            ivLike.setImageResource(R.drawable.ic_play_btn_like_press);
+        }else {
+            //数据不存在
+            ivLike.setImageResource(R.drawable.ic_play_btn_like);
+        }
+
 
         if (Common.musicList.get(position).albumBip != null) {
             Bitmap bgbm = BlurUtil.doBlur(Common.musicList.get(position).albumBip, 10, 5);//将专辑虚化
@@ -148,7 +179,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         //实例化，设置旋转对象
         objectAnimator = ObjectAnimator.ofFloat(ivDisc, "rotation", 0f, 360f);
         //设置转一圈要多长时间
-        objectAnimator.setDuration(8000);
+        objectAnimator.setDuration(18000);
         //设置旋转速率
         objectAnimator.setInterpolator(new LinearInterpolator());
         //设置循环次数 -1为一直循环
@@ -162,7 +193,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         rotateAnimation.setInterpolator(new LinearInterpolator());
         rotateAnimation.setRepeatCount(0);
         rotateAnimation.setFillAfter(true);
-        rotateAnimation.setStartOffset(500);
+        rotateAnimation.setStartOffset(50);
         ivNeedle.setAnimation(rotateAnimation);
         rotateAnimation.cancel();
 
@@ -218,13 +249,13 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         {
             if (position == Common.musicList.size() - 1)//默认循环播放
             {
-                if (buttonWitch == 1) {
+                if (buttonWhich == 1) {
                     position--;
                     mediaPlayer.reset();
                     objectAnimator.pause();
                     ivNeedle.startAnimation(rotateAnimation2);
                     prevAndnextplaying(Common.musicList.get(position).path);
-                } else if (buttonWitch == 2) {
+                } else if (buttonWhich == 2) {
                     position = 0;// 第一首
                     mediaPlayer.reset();
                     objectAnimator.pause();
@@ -232,13 +263,13 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                     prevAndnextplaying(Common.musicList.get(position).path);
                 }
             } else if (position == 0) {
-                if (buttonWitch == 1) {
+                if (buttonWhich == 1) {
                     position = Common.musicList.size() - 1;
                     mediaPlayer.reset();
                     objectAnimator.pause();
                     ivNeedle.startAnimation(rotateAnimation2);
                     prevAndnextplaying(Common.musicList.get(position).path);
-                } else if (buttonWitch == 2) {
+                } else if (buttonWhich == 2) {
                     position++;
                     mediaPlayer.reset();
                     objectAnimator.pause();
@@ -246,14 +277,14 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                     prevAndnextplaying(Common.musicList.get(position).path);
                 }
             }else {
-                if(buttonWitch ==1){
+                if(buttonWhich ==1){
                     position--;
                     mediaPlayer.reset();
                     objectAnimator.pause();
                     ivNeedle.startAnimation(rotateAnimation2);
                     prevAndnextplaying(Common.musicList.get(position).path);
 
-                }else if(buttonWitch ==2){
+                }else if(buttonWhich ==2){
                     position++;
                     mediaPlayer.reset();
                     objectAnimator.pause();
@@ -284,6 +315,40 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm:ss");    //规定固定的格式
         String totaltime = simpleDateFormat.format(date);
         return totaltime;
+    }
+
+    //加入收藏/取消收藏
+    public void setCollect(){
+        String inputTitle = Common.musicList.get(position).title;
+        String inputArtist = Common.musicList.get(position).artist;
+        if (dbHelper.checkTitleArtist(inputTitle,inputArtist)){
+            //数据存在，信息从数据库删除
+            boolean ret;
+            ret = dbHelper.deleteMusic(Common.musicList.get(position).title,
+                    Common.musicList.get(position).artist);
+            if (!ret){
+                return;
+            }else {
+                Toast.makeText(this,"💔已取消喜欢",Toast.LENGTH_SHORT).show();
+                ivLike.setImageResource(R.drawable.ic_play_btn_like);
+            }
+        }else {
+            //数据不存在，信息保存到数据库
+            boolean ret;
+            ret = dbHelper.insertMusic(Common.musicList.get(position).title,
+                    Common.musicList.get(position).artist,
+                    Common.musicList.get(position).album,
+                    Common.musicList.get(position).albumId,
+                    Common.musicList.get(position).length,
+                    Common.musicList.get(position).size,
+                    Common.musicList.get(position).artist);
+            if(!ret){
+                return;
+            }else {
+                Toast.makeText(this,"❤已添加到我喜欢的音乐",Toast.LENGTH_SHORT).show();
+                ivLike.setImageResource(R.drawable.ic_play_btn_like_press);
+            }
+        }
     }
 
     //绑定ID，设置监听
@@ -341,11 +406,11 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.iv_prev:
-                buttonWitch = 1;
+                buttonWhich = 1;
                 setBtnMode();
                 break;
             case R.id.iv_next:
-                buttonWitch = 2;
+                buttonWhich = 2;
                 setBtnMode();
                 break;
             case R.id.iv_play:
@@ -361,6 +426,8 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                     ivPlay.setImageResource(R.drawable.ic_play_btn_pause);
                 }
                 break;
+            case R.id.iv_like:
+                setCollect();
             default:
                 break;
         }
