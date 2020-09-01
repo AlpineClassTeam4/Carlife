@@ -9,7 +9,7 @@
     <com.youth.banner.Banner
         android:id="@+id/banner"
         android:layout_width="411dp"
-        android:layout_height="602dp"
+        android:layout_height="703dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
