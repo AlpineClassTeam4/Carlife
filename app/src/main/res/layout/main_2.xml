@@ -19,7 +19,7 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             app:tabMode="scrollable"
             app:tabSelectedTextColor="#FF0000"
             app:tabTextColor="#000000">
