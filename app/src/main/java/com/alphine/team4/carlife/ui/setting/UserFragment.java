@@ -1,15 +1,27 @@
 package com.alphine.team4.carlife.ui.setting;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alphine.team4.carlife.R;
+import com.alphine.team4.carlife.ui.login.toolsBeans.DBHelper;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 /**
@@ -26,6 +38,14 @@ public class UserFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+
+    private static final String TAG = "HomeDate";
+    TextView textView;
+
+    DBHelper dbHelper = new DBHelper(getActivity());
+
+    String nickName;
 
     public UserFragment() {
         // Required empty public constructor
@@ -65,5 +85,54 @@ public class UserFragment extends Fragment {
                 .setTitle("User");
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_user, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user_date",MODE_PRIVATE);
+        String input_email = sharedPreferences.getString("user_email",null);
+
+        SQLiteDatabase db;
+
+        textView = getActivity().findViewById(R.id.textView4);
+
+        String path = getActivity().getFilesDir() + "/"+"user_info.db";
+        db = SQLiteDatabase.openOrCreateDatabase(path,null);
+        Cursor cursor = db.query("user_info",null,"user_email=?",
+                new String[]{input_email},
+                null,null,null,null);
+        while (cursor.moveToNext()){
+            nickName = cursor.getString(cursor.getColumnIndex("user_nickname"));
+        }
+        textView.setText(nickName+" 已登录");
+
+        getActivity().findViewById(R.id.button_logout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user_date",MODE_PRIVATE);
+
+                String logout_email;
+                String logout_password;
+
+                logout_email = sharedPreferences.getString("user_email",null);
+                logout_password = sharedPreferences.getString("user_password",null);
+
+                Intent intent = new Intent(getActivity(),com.alphine.team4.carlife.ui.login.LoginSystemActivity.class);
+                intent.putExtra("logout_email",logout_email);
+                intent.putExtra("logout_password",logout_password);
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.remove("user_email");
+                editor.remove("user_password");
+                editor.commit();
+
+                getActivity().finish();
+
+                startActivity(intent);
+                Toast.makeText(getActivity(),nickName+" 已登出",Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

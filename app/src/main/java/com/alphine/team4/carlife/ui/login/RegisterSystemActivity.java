@@ -62,7 +62,7 @@ public class RegisterSystemActivity extends AppCompatActivity {
                 Log.d(TAG, "pwd2: "+pwd2);
                 Log.d(TAG, "onClick: "+loginBean.password);
 
-                if (pwd1 == pwd2) {
+                if (pwd1.equals(pwd2)) {
                     dbHelper.openDB();
                     b = dbHelper.insertUserinfo(loginBean);
 
