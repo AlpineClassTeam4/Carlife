@@ -12,15 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_webView"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            app:titleTextColor="@color/colorWhite"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            />
 
         <LinearLayout
             android:orientation="vertical"

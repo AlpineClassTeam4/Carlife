@@ -14,7 +14,7 @@
     </style>
 
     <style name="MyDatePickerDialogTheme" parent="android:Theme.Material.Light.Dialog" tools:targetApi="lollipop">
-        <item name="android:colorAccent">@color/colorPrimary</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
     </style>
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:datePickerDialogTheme" tools:targetApi="lollipop">@style/MyDatePickerDialogTheme</item>

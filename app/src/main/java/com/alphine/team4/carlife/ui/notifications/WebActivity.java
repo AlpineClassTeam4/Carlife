@@ -41,7 +41,7 @@ public class WebActivity extends BaseActivity {
         setContentView(R.layout.activity_web);
         webView = (WebView) findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
-        navToolbar = (Toolbar) findViewById(R.id.toolbar_webView);
+        //navToolbar = (Toolbar) findViewById(R.id.toolbar_webView);
         commentToolBar = (Toolbar) findViewById(R.id.toolbar_webComment);
         //将底部评论框的toolbar放在主界面上
         findViewById(R.id.toolbar_webComment).bringToFront();
@@ -89,7 +89,7 @@ public class WebActivity extends BaseActivity {
         // Toolbar通过setSupportActionBar(toolbar) 被修饰成了actionbar。
         //setSupportActionBar(commentToolBar);
         // 设置菜单栏标题
-        navToolbar.setTitle("看点新闻");
+        //navToolbar.setTitle("看点新闻");
         //setSupportActionBar(navToolbar);
         commentToolBar.inflateMenu(R.menu.tool_webbottom);
         commentToolBar.setTitle("感谢观看");
@@ -203,7 +203,7 @@ public class WebActivity extends BaseActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             //设置返回图标
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_return_left);
+            actionBar.setHomeAsUpIndicator(R.drawable.back1);
         }
     }
 

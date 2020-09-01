@@ -35,6 +35,7 @@ public class NotificationsFragment extends Fragment {
 
 
 
+
         notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -76,5 +77,6 @@ public class NotificationsFragment extends Fragment {
             }
         });
     }
+
 
 }
