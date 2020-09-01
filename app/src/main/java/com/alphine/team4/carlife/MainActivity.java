@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
     }
 
     @Override
@@ -43,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.item_open_setting:
                 startActivity(new Intent(this,com.alphine.team4.carlife.ui.setting.SettingActivity.class));
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

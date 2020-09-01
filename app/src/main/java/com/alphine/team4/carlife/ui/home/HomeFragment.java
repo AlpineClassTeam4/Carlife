@@ -32,6 +32,14 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 new ViewModelProvider(getActivity()).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+        root.findViewById(R.id.button_GPS).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getActivity().getPackageManager().getLaunchIntentForPackage("com.qinwang.locationactivity");
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
 
         return root;
     }
