@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single" >
-        <item android:id="@+id/nav_edit" android:title="编辑资料" android:icon="@drawable/nav_personinfo"
+        <item
+            android:id="@+id/nav_edit"
             android:checkable="true"
-            />
+            android:icon="@drawable/nav_personinfo"
+            android:title="编辑资料" />
         <item android:id="@+id/nav_articles" android:title="我的文章" android:icon="@drawable/nav_articles"
             android:checkable="true"
             />
