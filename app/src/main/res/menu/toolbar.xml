@@ -7,12 +7,15 @@
         当用户选择这个按钮时，这个操作视窗展开。
     orderInCategory：设置优先级，值越大优先级越低
     -->
-    <item android:id="@+id/userFeedback" android:title="用户反馈"
-        app:showAsAction="collapseActionView"
-        android:orderInCategory="110"/>
-    <item android:id="@+id/userExit" android:title="退出"
+    <item
+        android:id="@+id/userFeedback"
+        android:orderInCategory="110"
+        android:title="用户反馈" />
+    <item
+        android:id="@+id/userExit"
         android:icon="@drawable/ic_exit"
-        app:showAsAction="always"
-        android:orderInCategory="100"/>
+        android:orderInCategory="100"
+        android:title="退出"
+        app:showAsAction="always" />
 
 </menu>

@@ -110,7 +110,7 @@ public class MainActivity extends BaseActivity {
         super.onStart();
         System.out.println("当前MainActivity活动又被加载onStart");
         //设置标题栏的logo
-        //toolbar.setLogo(R.drawable.icon);
+        //toolbar.setLogo(R.drawable.ic_arrow_down);
         //设置标题栏标题
         //toolbar.setTitle("看点新闻");
         //设置自定义的标题栏实例
@@ -121,7 +121,7 @@ public class MainActivity extends BaseActivity {
             //通过HomeAsUp来让导航按钮显示出来
             actionBar.setDisplayHomeAsUpEnabled(true);
             //设置Indicator来添加一个点击图标（默认图标是一个返回的箭头）
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_home_black_24dp);
         }
         //设置默认选中第一个
         navigationView.setCheckedItem(R.id.nav_edit);
