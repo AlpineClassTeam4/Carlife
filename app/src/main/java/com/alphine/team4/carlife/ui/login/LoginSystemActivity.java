@@ -74,8 +74,7 @@ public class LoginSystemActivity extends AppCompatActivity {
 
                 dbHelper.openDB();
                 if (dbHelper.checkNamePassword(input_email,input_password)){
-
-                    Intent i = new Intent(LoginSystemActivity.this, HomeFragment.class);
+                    Intent i = new Intent(LoginSystemActivity.this,com.alphine.team4.carlife.MainActivity.class);
                     i.putExtra("email",input_email);
                     preferences = getSharedPreferences("user_date",MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();//获取编辑器
