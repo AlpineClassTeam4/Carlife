@@ -132,8 +132,9 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                 Bitmap bm = MergeImage.mergeThumbnailBitmap(bitmap1,Common.musicList.get(position).albumBip);//将专辑图片放到圆盘中
                 ivDisc.setImageBitmap(bm);
             } else {
-                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.play_page_default_bg);
-                ivBg.setImageBitmap(bitmap);
+//                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.play_page_default_bg);
+//                ivBg.setImageBitmap(bitmap);
+                ivBg.setImageResource(R.drawable.play_page_default_bg);
                 Bitmap bitmap1 = BitmapFactory.decodeResource(getResources(), R.drawable.play_page_disc);
                 Bitmap bitmap2 = BitmapFactory.decodeResource(getResources(), R.drawable.play_page_default_cover);
                 Bitmap bm = MergeImage.mergeThumbnailBitmap(bitmap1, bitmap2);
