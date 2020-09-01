@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <Button
-        android:id="@+id/button_page_setting"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:background="@drawable/setting_icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"

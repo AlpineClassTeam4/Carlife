@@ -27,8 +27,6 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
 
-    Button button_setting;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
@@ -41,15 +39,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        button_setting = getView().findViewById(R.id.button_page_setting);
-
-        button_setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(),com.alphine.team4.carlife.ui.setting.SettingActivity.class));
-            }
-        });
 
     }
 }
