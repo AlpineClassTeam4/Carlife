@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
@@ -31,6 +33,7 @@ import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.alphine.team4.carlife.R;
+import com.alphine.team4.carlife.ui.music.MusicService;
 import com.alphine.team4.carlife.ui.music.activity.PlayActivity;
 import com.alphine.team4.carlife.ui.music.adapter.MusicAdapter;
 import com.alphine.team4.carlife.ui.music.utils.Common;
@@ -131,7 +134,7 @@ public class LocalMusicFragment extends Fragment {
             }
         });
 
-        adapter = new MusicAdapter(getActivity(), musicList);        //创建MusicAdapter的对象，实现自定义适配器的创建
+        adapter = new MusicAdapter(getActivity(), musicList); //创建MusicAdapter的对象，实现自定义适配器的创建
         listView.setAdapter(adapter);                         //listView绑定适配器
         return view;
     }

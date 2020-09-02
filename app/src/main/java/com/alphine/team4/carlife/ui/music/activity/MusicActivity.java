@@ -4,12 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alphine.team4.carlife.R;
+import com.alphine.team4.carlife.ui.music.MusicService;
 import com.alphine.team4.carlife.ui.music.adapter.MusicPagerAdapter;
 import com.alphine.team4.carlife.ui.music.fragment.LocalMusicFragment;
 import com.alphine.team4.carlife.ui.music.fragment.OnlineMusicFragment;
@@ -27,10 +32,22 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
     private List<Fragment> fragmentList = new ArrayList<>();
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        //绑定服务
+        Intent serviceintent = new Intent(this,MusicService.class);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        //解绑
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music);
-
         //绑定id
         bangdingID();
         //设置监听
@@ -50,7 +67,6 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
             }
-
             @Override
             public void onPageSelected(int position) {
                 switch (position) {
