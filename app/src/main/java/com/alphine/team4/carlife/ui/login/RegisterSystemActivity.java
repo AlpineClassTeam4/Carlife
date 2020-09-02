@@ -28,8 +28,6 @@ public class RegisterSystemActivity extends AppCompatActivity {
 
     DBHelper dbHelper = new DBHelper(this);
 
-    Context context;
-
     private static final String TAG = "pwd";
 
     @Override
@@ -67,7 +65,7 @@ public class RegisterSystemActivity extends AppCompatActivity {
                     b = dbHelper.insertUserinfo(loginBean);
 
                     if (!b){
-                        Toast.makeText(context,"数据库操作失败",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterSystemActivity.this,"数据库操作失败",Toast.LENGTH_SHORT).show();
                     }
                     Toast.makeText(RegisterSystemActivity.this,"账号注册成功",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RegisterSystemActivity.this,LoginSystemActivity.class);
