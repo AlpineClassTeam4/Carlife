@@ -1,11 +1,13 @@
 package com.alphine.team4.carlife.ui.notifications;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.Window;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +26,7 @@ import java.util.List;
 public class NotificationsFragment extends Fragment {
 
     private NotificationsViewModel notificationsViewModel;
+    private MediaPlayer mp;
 
 
 
@@ -32,20 +35,10 @@ public class NotificationsFragment extends Fragment {
         notificationsViewModel =
                 ViewModelProviders.of(this).get(NotificationsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
-
-
-
-
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-
-
-            }
-        });
-
-
+        mp = MediaPlayer.create(this.getActivity(),R.raw.timi);
+        mp.start();
         return root;
+
     }
 
     @Override
@@ -53,10 +46,8 @@ public class NotificationsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         List images = new ArrayList();
         images.add(R.drawable.a1);
-        images.add(R.drawable.a2);
-        images.add(R.drawable.a4);
-        images.add(R.drawable.a5);
-        images.add(R.drawable.a6);
+        images.add(R.drawable.a8);
+        images.add(R.drawable.a7);
 
 
         Banner banner = (Banner) getActivity().findViewById(R.id.banner);
