@@ -39,6 +39,7 @@
             android:name=".ui.setting.SettingActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity android:name=".ui.music.activity.CollectActivity" />
+        <activity android:name=".ui.music.activity.SongPlayActivity"/>
         <activity android:name=".ui.music.activity.PlayActivity" />
         <activity
             android:name=".ui.music.activity.MusicActivity"
