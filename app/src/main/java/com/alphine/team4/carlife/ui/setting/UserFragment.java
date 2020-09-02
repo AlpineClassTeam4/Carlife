@@ -252,8 +252,6 @@ public class UserFragment extends Fragment implements View.OnClickListener, Comp
                 Intent i = new Intent(getActivity(), SocketService.class);
                 getActivity().stopService(i);
 
-                getActivity().
-
                 getActivity().finish();
 
                 startActivity(intent);
