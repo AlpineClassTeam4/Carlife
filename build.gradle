@@ -17,6 +17,10 @@ allprojects {
     repositories {
         google()
         jcenter()
+        //添加StarrySkyX的时候要添加这个仓库
+        maven{
+            url "https://dl.bintray.com/lizixian/StarrySky/"
+        }
     }
 }
 
