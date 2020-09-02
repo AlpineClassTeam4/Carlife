@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/item_open_setting"
-        android:icon="@drawable/setting_icon"
+        android:icon="@drawable/nav_settings"
         android:title="Item"
         app:showAsAction="always" />
 </menu>

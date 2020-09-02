@@ -31,17 +31,10 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         final TextView textView = root.findViewById(R.id.text_dashboard);
         root.findViewById(R.id.frg_music_imgv).setOnClickListener(this);
         root.findViewById(R.id.frg_like_imgv).setOnClickListener(this);
-
         dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
-//                textView.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        startActivity(new Intent(getActivity(), MusicActivity.class));
-//                    }
-//                });
             }
         });
         return root;
@@ -51,7 +44,11 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.frg_music_imgv:
-                startActivity(new Intent(getActivity(),MusicActivity.class));
+                Intent musicintent = new Intent(getActivity(),MusicActivity.class);
+                Intent serviceintent = new Intent(getActivity(),MusicService.class);
+                musicintent.putExtra("Intent",serviceintent);
+                startActivity(musicintent);
+                getActivity().startService(serviceintent);
                 break;
             case R.id.frg_like_imgv:
                 startActivity(new Intent(getActivity(), CollectActivity.class));
