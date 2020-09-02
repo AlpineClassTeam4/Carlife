@@ -75,7 +75,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         bingID();
         dbHelper = new DBHelper(this);
         dbHelper.open();                            //打开数据库
-        Intent intent = getIntent();                                                    //通过getIntent()方法实现intent信息的获取
+        Intent intent = getIntent();                                                //通过getIntent()方法实现intent信息的获取
         position = intent.getIntExtra("position", 0);            //获取position
         musicWhich = intent.getIntExtra("musicWhich",0);         //获取音乐来源  数据库/媒体库
         mediaPlayer = new MediaPlayer();
@@ -200,6 +200,12 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         MusicThread musicThread = new MusicThread();                                         //启动线程
         new Thread(musicThread).start();
 
+        cover();
+
+    }
+
+    public void cover()
+    {
         //实例化，设置旋转对象
         objectAnimator = ObjectAnimator.ofFloat(ivDisc, "rotation", 0f, 360f);
         //设置转一圈要多长时间
