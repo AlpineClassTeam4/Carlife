@@ -27,9 +27,6 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
     TextView tvLocalmusic,tvOnlinemusic;
     ImageView ivSearch,ivBack;
     ViewPager viewPager;
-    Intent intent;
-    int serviceintent;
-    MusicService.MyBinder serviceiBinder1;
 
     //将Fragment放入List集合中，存放fragment对象
     private List<Fragment> fragmentList = new ArrayList<>();
@@ -39,26 +36,13 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
         super.onStart();
         //绑定服务
         Intent serviceintent = new Intent(this,MusicService.class);
-        bindService(serviceintent, connection_music, BIND_AUTO_CREATE);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         //解绑
-        unbindService(connection_music);
     }
-
-    ServiceConnection connection_music = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            serviceiBinder1 = (MusicService.MyBinder) service;
-            //i=0;
-        }
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
