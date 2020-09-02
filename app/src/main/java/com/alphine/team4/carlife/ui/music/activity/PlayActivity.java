@@ -82,6 +82,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         //音乐来自哪个列表
         if(musicWhich == 0){
             prevAndnextplaying(Common.musicList.get(position).path);
+            Log.d(TAG, "onCreate: "+Common.musicList.get(position).path);
         }else {
             prevAndnextplaying(Common.dbmusicList.get(position).path);
             Log.d(TAG, "onCreate: "+Common.dbmusicList.get(position).path);
