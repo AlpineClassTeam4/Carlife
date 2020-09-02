@@ -6,14 +6,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
+import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -25,7 +29,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alphine.team4.carlife.R;
+import com.alphine.team4.carlife.musicaidl;
 import com.alphine.team4.carlife.ui.music.DBHelper.DBHelper;
+import com.alphine.team4.carlife.ui.music.MusicService;
 import com.alphine.team4.carlife.ui.music.utils.BlurUtil;
 import com.alphine.team4.carlife.ui.music.utils.Common;
 import com.alphine.team4.carlife.ui.music.utils.MergeImage;
@@ -35,7 +41,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class PlayActivity extends AppCompatActivity implements View.OnClickListener {
+public class PlayActivity extends AppCompatActivity implements View.OnClickListener, ServiceConnection {
     TextView tvTitle,tvArtist;
     TextView tvCurrenttime,tvTotaltime;
     ImageView ivBack,ivModel,ivPrev,ivPlay,ivNext,ivLike;
@@ -43,7 +49,6 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     SeekBar sbProgress;
     private int position;
     private int totaltime;
-    MediaPlayer mediaPlayer;
     private int i = 0;
     private int playMode = 0;
     private int buttonWhich = 0;
@@ -56,6 +61,8 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final String TAG="123";
 
+    musicaidl musicMyBinder;
+
     //Handler实现向主线程进行传值
     private Handler handler = new Handler() {
         @Override
@@ -66,6 +73,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
             tvCurrenttime.setText(formatTime(msg.what));
         }
     };
+    private String currentMusicPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,13 +83,13 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         bingID();
         dbHelper = new DBHelper(this);
         dbHelper.open();                            //打开数据库
-        Intent intent = getIntent();                                                //通过getIntent()方法实现intent信息的获取
-        position = intent.getIntExtra("position", 0);            //获取position
-        musicWhich = intent.getIntExtra("musicWhich",0);         //获取音乐来源  数据库/媒体库
-        mediaPlayer = new MediaPlayer();
+        Intent intent = getIntent();                                           //通过getIntent()方法实现intent信息的获取
+        position = intent.getIntExtra("position", 0);        //获取position
+        musicWhich = intent.getIntExtra("musicWhich",0);     //获取音乐来源  数据库/媒体库
         //音乐来自哪个列表
         if(musicWhich == 0){
             prevAndnextplaying(Common.musicList.get(position).path);
+            Log.e(TAG, "onCreate: "+Common.musicList.get(position).path);
         }else {
             prevAndnextplaying(Common.dbmusicList.get(position).path);
             Log.d(TAG, "onCreate: "+Common.dbmusicList.get(position).path);
@@ -90,7 +98,11 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) {
-                    mediaPlayer.seekTo(progress);
+                    try {
+                        musicMyBinder.musicseekto(progress);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
@@ -106,10 +118,8 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    //prevAndnext() 实现页面的展现
-    private void prevAndnextplaying(String path) {
+    public void musicInfo(){
         isStop = false;
-        mediaPlayer.reset();
         if (musicWhich == 0){//媒体库音乐列表
             tvTitle.setText(Common.musicList.get(position).title);
             tvArtist.setText(Common.musicList.get(position).artist);
@@ -169,26 +179,18 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                 Bitmap bm = MergeImage.mergeThumbnailBitmap(bitmap1,bitmap2);
                 ivDisc.setImageBitmap(bm);
             }
-
         }
-        try {
-            mediaPlayer.setDataSource(path);
-            mediaPlayer.prepare();                   // 准备
-            mediaPlayer.start();                        // 启动
-            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    if(!mediaPlayer.isPlaying()){
-                        setPlayMode();
-                    }
+    }
 
-                }
-            });
-        } catch (IllegalArgumentException | SecurityException | IllegalStateException
-                | IOException e) {
+    //prevAndnext() 实现页面的展现
+    private void prevAndnextplaying(String path) {
+        currentMusicPath = path;
+        try {
+            musicMyBinder.setMusicPath(path);
+        }catch (Exception e){
             e.printStackTrace();
         }
+        musicInfo();
         if (musicWhich == 0){
             tvTotaltime.setText(formatTime(Common.musicList.get(position).length));
             sbProgress.setMax(Common.musicList.get(position).length);
@@ -196,12 +198,9 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
             tvTotaltime.setText(formatTime(Common.dbmusicList.get(position).length));
             sbProgress.setMax(Common.dbmusicList.get(position).length);
         }
-
         MusicThread musicThread = new MusicThread();                                         //启动线程
         new Thread(musicThread).start();
-
         cover();
-
     }
 
     public void cover()
@@ -245,14 +244,12 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                 if (position == Common.musicList.size() - 1)//默认循环播放
                 {
                     position = 0;// 第一首
-                    mediaPlayer.reset();
                     objectAnimator.pause();
                     ivNeedle.startAnimation(rotateAnimation2);
                     prevAndnextplaying(Common.musicList.get(position).path);
 
                 } else {
                     position++;
-                    mediaPlayer.reset();
                     objectAnimator.pause();
                     ivNeedle.startAnimation(rotateAnimation2);
                     prevAndnextplaying(Common.musicList.get(position).path);
@@ -260,14 +257,12 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
             } else if (playMode == 1)//单曲循环
             {
                 //position不需要更改
-                mediaPlayer.reset();
                 objectAnimator.pause();
                 ivNeedle.startAnimation(rotateAnimation2);
                 prevAndnextplaying(Common.musicList.get(position).path);
             } else if (playMode == 2)//随机
             {
                 position = (int) (Math.random() * Common.musicList.size());//随机播放
-                mediaPlayer.reset();
                 objectAnimator.pause();
                 ivNeedle.startAnimation(rotateAnimation2);
                 prevAndnextplaying(Common.musicList.get(position).path);
@@ -278,14 +273,12 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                 if (position == Common.dbmusicList.size() - 1)//默认循环播放
                 {
                     position = 0;// 第一首
-                    mediaPlayer.reset();
                     objectAnimator.pause();
                     ivNeedle.startAnimation(rotateAnimation2);
                     prevAndnextplaying(Common.dbmusicList.get(position).path);
 
                 } else {
                     position++;
-                    mediaPlayer.reset();
                     objectAnimator.pause();
                     ivNeedle.startAnimation(rotateAnimation2);
                     prevAndnextplaying(Common.dbmusicList.get(position).path);
@@ -293,14 +286,12 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
             } else if (playMode == 1)//单曲循环
             {
                 //position不需要更改
-                mediaPlayer.reset();
                 objectAnimator.pause();
                 ivNeedle.startAnimation(rotateAnimation2);
                 prevAndnextplaying(Common.dbmusicList.get(position).path);
             } else if (playMode == 2)//随机
             {
                 position = (int) (Math.random() * Common.dbmusicList.size());//随机播放
-                mediaPlayer.reset();
                 objectAnimator.pause();
                 ivNeedle.startAnimation(rotateAnimation2);
                 prevAndnextplaying(Common.dbmusicList.get(position).path);
@@ -317,61 +308,93 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                 {
                     if (buttonWhich == 1) {
                         position--;
-                        mediaPlayer.reset();
                         objectAnimator.pause();
                         ivNeedle.startAnimation(rotateAnimation2);
                         prevAndnextplaying(Common.musicList.get(position).path);
+                        try {
+                            musicMyBinder.musicprev(Common.musicList.get(position).path);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
                     } else if (buttonWhich == 2) {
                         position = 0;// 第一首
-                        mediaPlayer.reset();
                         objectAnimator.pause();
                         ivNeedle.startAnimation(rotateAnimation2);
                         prevAndnextplaying(Common.musicList.get(position).path);
+                        try {
+                            musicMyBinder.musicnext(Common.musicList.get(position).path);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
                     }
                 } else if (position == 0) {
                     if (buttonWhich == 1) {
                         position = Common.musicList.size() - 1;
-                        mediaPlayer.reset();
                         objectAnimator.pause();
                         ivNeedle.startAnimation(rotateAnimation2);
                         prevAndnextplaying(Common.musicList.get(position).path);
+                        try {
+                            musicMyBinder.musicprev(Common.musicList.get(position).path);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
                     } else if (buttonWhich == 2) {
                         position++;
-                        mediaPlayer.reset();
                         objectAnimator.pause();
                         ivNeedle.startAnimation(rotateAnimation2);
                         prevAndnextplaying(Common.musicList.get(position).path);
+                        try {
+                            musicMyBinder.musicnext(Common.musicList.get(position).path);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }else {
                     if(buttonWhich ==1){
                         position--;
-                        mediaPlayer.reset();
                         objectAnimator.pause();
                         ivNeedle.startAnimation(rotateAnimation2);
                         prevAndnextplaying(Common.musicList.get(position).path);
+                        try {
+                            musicMyBinder.musicprev(Common.musicList.get(position).path);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
 
                     }else if(buttonWhich ==2){
                         position++;
-                        mediaPlayer.reset();
                         objectAnimator.pause();
                         ivNeedle.startAnimation(rotateAnimation2);
                         prevAndnextplaying(Common.musicList.get(position).path);
+                        try {
+                            musicMyBinder.musicnext(Common.musicList.get(position).path);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             } else if (playMode == 1)//单曲循环
             {
                 //position不需要更改
-                mediaPlayer.reset();
                 objectAnimator.pause();
                 ivNeedle.startAnimation(rotateAnimation2);
                 prevAndnextplaying(Common.musicList.get(position).path);
+                try {
+                    musicMyBinder.musicnext(Common.musicList.get(position).path);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
             } else if (playMode == 2)//随机
             {
                 position = (int) (Math.random() * Common.musicList.size());//随机播放
-                mediaPlayer.reset();
                 objectAnimator.pause();
                 ivNeedle.startAnimation(rotateAnimation2);
                 prevAndnextplaying(Common.musicList.get(position).path);
+                try {
+                    musicMyBinder.musicnext(Common.musicList.get(position).path);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
             }
         }else {
             if (playMode == 0)//全部循环
@@ -380,61 +403,92 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                 {
                     if (buttonWhich == 1) {
                         position--;
-                        mediaPlayer.reset();
                         objectAnimator.pause();
                         ivNeedle.startAnimation(rotateAnimation2);
                         prevAndnextplaying(Common.dbmusicList.get(position).path);
+                        try {
+                            musicMyBinder.musicprev(Common.dbmusicList.get(position).path);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
                     } else if (buttonWhich == 2) {
                         position = 0;// 第一首
-                        mediaPlayer.reset();
                         objectAnimator.pause();
                         ivNeedle.startAnimation(rotateAnimation2);
                         prevAndnextplaying(Common.dbmusicList.get(position).path);
+                        try {
+                            musicMyBinder.musicnext(Common.dbmusicList.get(position).path);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
                     }
                 } else if (position == 0) {
                     if (buttonWhich == 1) {
                         position = Common.dbmusicList.size() - 1;
-                        mediaPlayer.reset();
                         objectAnimator.pause();
                         ivNeedle.startAnimation(rotateAnimation2);
                         prevAndnextplaying(Common.dbmusicList.get(position).path);
+                        try {
+                            musicMyBinder.musicprev(Common.dbmusicList.get(position).path);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
                     } else if (buttonWhich == 2) {
                         position++;
-                        mediaPlayer.reset();
                         objectAnimator.pause();
                         ivNeedle.startAnimation(rotateAnimation2);
                         prevAndnextplaying(Common.dbmusicList.get(position).path);
+                        try {
+                            musicMyBinder.musicnext(Common.dbmusicList.get(position).path);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }else {
                     if(buttonWhich ==1){
                         position--;
-                        mediaPlayer.reset();
                         objectAnimator.pause();
                         ivNeedle.startAnimation(rotateAnimation2);
                         prevAndnextplaying(Common.dbmusicList.get(position).path);
-
+                        try {
+                            musicMyBinder.musicprev(Common.dbmusicList.get(position).path);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
                     }else if(buttonWhich ==2){
                         position++;
-                        mediaPlayer.reset();
                         objectAnimator.pause();
                         ivNeedle.startAnimation(rotateAnimation2);
                         prevAndnextplaying(Common.dbmusicList.get(position).path);
+                        try {
+                            musicMyBinder.musicnext(Common.dbmusicList.get(position).path);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             } else if (playMode == 1)//单曲循环
             {
                 //position不需要更改
-                mediaPlayer.reset();
                 objectAnimator.pause();
                 ivNeedle.startAnimation(rotateAnimation2);
                 prevAndnextplaying(Common.dbmusicList.get(position).path);
+                try {
+                    musicMyBinder.musicnext(Common.dbmusicList.get(position).path);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
             } else if (playMode == 2)//随机
             {
                 position = (int) (Math.random() * Common.dbmusicList.size());//随机播放
-                mediaPlayer.reset();
                 objectAnimator.pause();
                 ivNeedle.startAnimation(rotateAnimation2);
                 prevAndnextplaying(Common.dbmusicList.get(position).path);
+                try {
+                    musicMyBinder.musicnext(Common.dbmusicList.get(position).path);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -578,13 +632,27 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                 setBtnMode();
                 break;
             case R.id.iv_play:
-                if (mediaPlayer.isPlaying()){
-                    mediaPlayer.pause();
+                boolean b = false;
+                try {
+                    b = musicMyBinder.isPlaying();
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                if (b){
+                    try {
+                        musicMyBinder.musicpause();
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
                     objectAnimator.pause();
                     ivNeedle.startAnimation(rotateAnimation2);
                     ivPlay.setImageResource(R.drawable.ic_play_btn_play);
                 }else {
-                    mediaPlayer.start();
+                    try {
+                        musicMyBinder.musicstart();
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
                     objectAnimator.resume();
                     ivNeedle.startAnimation(rotateAnimation);
                     ivPlay.setImageResource(R.drawable.ic_play_btn_pause);
@@ -616,6 +684,13 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        Intent i = new Intent(this, MusicService.class);
+        bindService(i,this,BIND_AUTO_CREATE);
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
     }
@@ -625,13 +700,24 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         super.onDestroy();
         i = 0;
         isStop = false;
-        if (mediaPlayer.isPlaying()) {
-            mediaPlayer.stop();
-        }
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
+    }
+
+    @Override
+    public void onServiceConnected(ComponentName name, IBinder service) {
+        musicMyBinder = (musicaidl) service;
+        try {
+            prevAndnextplaying(currentMusicPath);
+            musicMyBinder.musicstart();
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
     }
+
+    @Override
+    public void onServiceDisconnected(ComponentName name) {
+
+    }
+
     //创建一个类MusicThread实现Runnable接口，实现多线程
     class MusicThread implements Runnable {
 
@@ -645,8 +731,13 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    //放送给Handler现在的运行到的时间，进行ui更新
-                    handler.sendEmptyMessage(mediaPlayer.getCurrentPosition());
+                    try {
+                        int po = musicMyBinder.getPlayingPosition();
+                        //放送给Handler现在的运行到的时间，进行ui更新
+                        handler.sendEmptyMessage(po);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
                 }
             }else {
                 while (true) {
@@ -656,8 +747,13 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    //放送给Handler现在的运行到的时间，进行ui更新
-                    handler.sendEmptyMessage(mediaPlayer.getCurrentPosition());
+                    try {
+                        int po = musicMyBinder.getPlayingPosition();
+                        //放送给Handler现在的运行到的时间，进行ui更新
+                        handler.sendEmptyMessage(po);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
