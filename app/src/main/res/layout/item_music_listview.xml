@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:singleLine="true"
-            android:text="歌曲"
+            android:text="@string/musicname"
             android:textColor="@color/colorBlack"
             android:textSize="16sp" />
 
@@ -42,7 +42,7 @@
             android:layout_marginTop="5dp"
             android:ellipsize="end"
             android:singleLine="true"
-            android:text="歌手 - 专辑"
+            android:text="@string/singer"
             android:textColor="@color/grey"
             android:textSize="12sp" />
 

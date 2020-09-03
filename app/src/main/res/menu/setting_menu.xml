@@ -3,11 +3,14 @@
 
     <item
         android:id="@+id/userFragment"
-        android:title="User" />
+        android:icon="@drawable/no_login_avatar"
+        android:title="@string/user" />
     <item
         android:id="@+id/wifiFragment"
-        android:title="WIFI" />
+        android:icon="@drawable/ic_wifi"
+        android:title="@string/wifi" />
     <item
         android:id="@+id/bluethoothFragment"
-        android:title="BlueThooth" />
+        android:icon="@drawable/ic_bluetooth"
+        android:title="@string/bluetooth" />
 </menu>

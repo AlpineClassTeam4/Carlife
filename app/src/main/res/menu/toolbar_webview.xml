@@ -9,10 +9,10 @@
     <!--<item android:id="@+id/news_search" android:orderInCategory="80"
         android:title="搜索" app:showAsAction="always"
         app:actionViewClass="android.widget.SearchView" />-->
-    <item android:id="@+id/news_setting" android:title="夜间模式"
+    <item android:id="@+id/news_setting" android:title="@string/night_mode"
         app:showAsAction="collapseActionView"
         android:orderInCategory="90"/>
-    <item android:id="@+id/news_feedback" android:title="朗读标题"
+    <item android:id="@+id/news_feedback" android:title="@string/read_title"
         app:showAsAction="collapseActionView"
         android:orderInCategory="100"/>
 </menu>

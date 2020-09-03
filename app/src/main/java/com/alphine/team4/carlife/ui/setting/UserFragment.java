@@ -24,9 +24,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +34,6 @@ import android.widget.ToggleButton;
 
 import com.alphine.team4.carlife.IOnSocketReceivedListener;
 import com.alphine.team4.carlife.ISocketBinder;
-import com.alphine.team4.carlife.MainActivity;
 import com.alphine.team4.carlife.R;
 import com.alphine.team4.carlife.ui.login.toolsBeans.DBHelper;
 import com.alphine.team4.carlife.ui.music.MusicService;
@@ -182,7 +181,12 @@ public class UserFragment extends Fragment implements View.OnClickListener, Comp
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((CollapsingToolbarLayout) requireActivity().findViewById(R.id.CollapsingToolbarLayout))
-                .setTitle("User");
+                .setTitle("用户");
+        ((ImageView) requireActivity().findViewById(R.id.setting_imageView))
+                .setImageResource(R.drawable.no_login_avatar);
+        ((TextView) requireActivity().findViewById(R.id.tv_explain))
+                .setText("显示用户登陆情况，显示本机IP地址"+
+                        "选择网络服务的开启和关闭，以及用户的登出");
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_user, container, false);
     }

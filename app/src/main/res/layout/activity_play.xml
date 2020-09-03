@@ -40,7 +40,7 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="无音乐"
+            android:text="@string/no_music"
             android:textColor="@color/colorWhite"
             android:textSize="16sp" />
 
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
-            android:text="艺术家"
+            android:text="@string/artist"
             android:textColor="@color/grey"
             android:textSize="12sp" />
 
@@ -87,7 +87,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="暂无歌词"
+        android:text="@string/no_musictext"
         android:textColor="@color/colorWhite"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/sb_progress"
@@ -118,7 +118,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="00:00"
+        android:text="@string/_00_00"
         android:textColor="@color/colorWhite"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/sb_progress"
@@ -130,7 +130,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="00:00"
+        android:text="@string/_00_00"
         android:textColor="@color/colorWhite"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/sb_progress"

@@ -27,6 +27,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -99,7 +100,13 @@ public class BluethoothFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((CollapsingToolbarLayout) requireActivity().findViewById(R.id.CollapsingToolbarLayout))
-                .setTitle("BlueThooth");
+                .setTitle("蓝牙");
+        ((ImageView) requireActivity().findViewById(R.id.setting_imageView))
+                .setImageResource(R.drawable.ic_bluetooth);
+        ((TextView) requireActivity().findViewById(R.id.tv_explain))
+                .setText("实现蓝牙的打开"+"\n"+
+                        "可用蓝牙的扫描"+"\n"+
+                        "蓝牙的选择连接");
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_bluethooth, container, false);
     }

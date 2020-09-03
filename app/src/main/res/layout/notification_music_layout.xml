@@ -21,11 +21,11 @@
             android:id="@+id/nf_title_tv"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_marginTop="5dp"
             android:layout_toLeftOf="@id/nf_pause_imgv"
             android:layout_toRightOf="@+id/nf_album_imgv"
-            android:text="告白气球"
+            android:text="@string/musicname"
             android:textColor="@color/colorBlack"
-            android:layout_marginTop="5dp"
             android:textSize="16sp" />
 
         <TextView
@@ -35,7 +35,7 @@
             android:layout_below="@+id/nf_title_tv"
             android:layout_toLeftOf="@id/nf_pause_imgv"
             android:layout_toRightOf="@+id/nf_album_imgv"
-            android:text="周杰伦"
+            android:text="@string/singer"
             android:textColor="@color/grey"
             android:textSize="12sp" />
 

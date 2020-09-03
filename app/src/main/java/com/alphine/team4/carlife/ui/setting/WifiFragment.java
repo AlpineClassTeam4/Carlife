@@ -29,6 +29,7 @@ import android.widget.Button;
 
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -99,6 +100,12 @@ public class WifiFragment extends Fragment {
                              Bundle savedInstanceState) {
         ((CollapsingToolbarLayout) requireActivity().findViewById(R.id.CollapsingToolbarLayout))
                 .setTitle("WIFI");
+        ((ImageView) requireActivity().findViewById(R.id.setting_imageView))
+                .setImageResource(R.drawable.ic_wifi);
+        ((TextView) requireActivity().findViewById(R.id.tv_explain))
+                .setText("实现wifi的打开"+"\n"+
+                        "可用wifi的扫描"+"\n"+
+                        "wifi的选择连接");
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_wifi, container, false);
     }

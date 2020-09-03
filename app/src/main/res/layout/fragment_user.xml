@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="xxxx 已登录"
+        android:text="@string/logined"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="88dp"
-        android:text="退出登录"
+        android:background="@color/float_transparent"
+        android:text="@string/logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -34,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="44dp"
-        android:text="远端IP"
+        android:text="@string/remoteIP"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -46,7 +47,6 @@
         android:layout_marginStart="12dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="6000"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
         app:layout_constraintStart_toEndOf="@+id/textView6" />
 
@@ -55,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
-        android:text="Port"
+        android:text="@string/port"
         android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/etRemoteIP"
         app:layout_constraintStart_toEndOf="@+id/etRemoteIP" />
@@ -67,7 +67,6 @@
         android:layout_marginStart="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="10.0.2.2"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView5"
         app:layout_constraintStart_toEndOf="@+id/textView5" />
 
@@ -78,7 +77,6 @@
         android:layout_marginStart="48dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="6000"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView7"
         app:layout_constraintStart_toEndOf="@+id/textView7" />
 
@@ -88,7 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="88dp"
-        android:text="本地接收端口"
+        android:text="@string/local_port"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -99,7 +97,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="64dp"
-        android:text="UDP"
+        android:text="@string/udp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -108,9 +106,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
-        android:text="ToggleButton"
-        android:textOff="网络服务未启动"
-        android:textOn="网络服务已启动"
+        android:background="@color/float_transparent"
+        android:textOff="@string/internet_service_not_start"
+        android:textOn="@string/internet_service_start"
         app:layout_constraintBaseline_toBaselineOf="@+id/switchUDP"
         app:layout_constraintStart_toEndOf="@+id/switchUDP" />
 

@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        app:headerLayout="@layout/setting_headerlayout"
         app:itemIconTint="@color/setting_meun_color"
         app:itemTextColor="@color/setting_meun_color"
         app:menu="@menu/setting_menu" />

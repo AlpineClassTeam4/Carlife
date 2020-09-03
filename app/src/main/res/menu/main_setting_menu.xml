@@ -5,6 +5,6 @@
     <item
         android:id="@+id/item_open_setting"
         android:icon="@drawable/nav_settings"
-        android:title="设置"
+        android:title="@string/title_setting"
         app:showAsAction="always" />
 </menu>

@@ -27,10 +27,9 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:hint="@string/into_title"
-            android:inputType="TODO"
+            android:importantForAutofill="no"
             android:padding="10dp"
-            android:textStyle="bold"
-            android:importantForAutofill="no" />
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"

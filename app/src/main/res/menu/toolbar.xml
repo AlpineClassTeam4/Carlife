@@ -10,12 +10,12 @@
     <item
         android:id="@+id/userFeedback"
         android:orderInCategory="110"
-        android:title="用户反馈" />
+        android:title="@string/user_feedback" />
     <item
         android:id="@+id/userExit"
         android:icon="@drawable/ic_exit"
         android:orderInCategory="100"
-        android:title="退出"
+        android:title="@string/exit"
         app:showAsAction="always" />
 
 </menu>

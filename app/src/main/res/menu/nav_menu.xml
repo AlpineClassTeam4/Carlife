@@ -7,16 +7,16 @@
             android:id="@+id/nav_edit"
             android:checkable="true"
             android:icon="@drawable/nav_personinfo"
-            android:title="编辑资料" />
-        <item android:id="@+id/nav_articles" android:title="我的文章" android:icon="@drawable/nav_articles"
+            android:title="@string/edit_data" />
+        <item android:id="@+id/nav_articles" android:title="@string/mytext" android:icon="@drawable/nav_articles"
             android:checkable="true"
             />
-        <item android:id="@+id/nav_favorite" android:title="个人收藏" android:icon="@drawable/nav_favorite"
+        <item android:id="@+id/nav_favorite" android:title="@string/myself_collection" android:icon="@drawable/nav_favorite"
             android:checkable="true"
             />
-        <item android:id="@+id/nav_clear_cache" android:title="清除缓存" android:icon="@drawable/nav_clear_cache"
+        <item android:id="@+id/nav_clear_cache" android:title="@string/clearn_cache" android:icon="@drawable/nav_clear_cache"
             android:checkable="true"
             />
-        <item android:id="@+id/nav_switch" android:title="切换账号" android:icon="@drawable/nav_switch" android:checkable="true"/>
+        <item android:id="@+id/nav_switch" android:title="@string/switch_account" android:icon="@drawable/nav_switch" android:checkable="true"/>
     </group>
 </menu>
