@@ -16,7 +16,7 @@ public class UDPHelper {
     private final String TAG = "UDPHelper";
     private int LocalPort = 7001;
     private int RemotePort = 7001;
-    private String RemoteIP = "127.0.0.1";
+    private String RemoteIP = "192.168.43.1";
     private DatagramSocket mSocket;
     private OnUDPReceiveListener receiveListener;
     private Thread receiveThread;

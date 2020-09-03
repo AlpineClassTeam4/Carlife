@@ -28,8 +28,8 @@ public class SocketService extends Service {
     private static final String TAG = "SocketService";
     private static final String SHP_NAME = "socket_config";
     private int localPort = 6000;
-    private int remotePort = 6000;
-    private String remoteIP = "10.0.2.2";
+    private int remotePort = 6001;
+    private String remoteIP = "192.168.43.1";
     private UDPHelper udpHelper = null;
     private TCPHelper tcpHelper = null;
     private TCPServerHelper tcpServerHelper = null;
@@ -403,8 +403,8 @@ public class SocketService extends Service {
     private void loadSocketParameter() {
         SharedPreferences shp = getSharedPreferences(SHP_NAME, MODE_PRIVATE);
         localPort = shp.getInt("localPort", 6000);
-        remoteIP = shp.getString("remoteIP", "127.0.0.1");
-        remotePort = shp.getInt("remotePort", 6000);
+        remoteIP = shp.getString("remoteIP", "192.168.43.1");
+        remotePort = shp.getInt("remotePort", 6001);
     }
 
     private void saveSocketParameter(String param) {
