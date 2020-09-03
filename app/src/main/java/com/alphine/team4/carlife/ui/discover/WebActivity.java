@@ -1,11 +1,14 @@
 package com.alphine.team4.carlife.ui.discover;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.SslErrorHandler;
@@ -16,6 +19,7 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.alphine.team4.carlife.R;
@@ -24,10 +28,12 @@ import com.alphine.team4.carlife.ui.discover.tools.BaseActivity;
 import org.litepal.LitePal;
 
 import java.util.List;
+import java.util.Locale;
 
 //若需要启用Javascript，则抑制其警告
 @SuppressLint("SetJavaScriptEnabled")
-public class WebActivity extends BaseActivity {
+public class WebActivity extends AppCompatActivity {
+    private TextToSpeech mSpeech;
 
     private WebView webView;
 
@@ -45,6 +51,26 @@ public class WebActivity extends BaseActivity {
         commentToolBar = (Toolbar) findViewById(R.id.toolbar_webComment);
         //将底部评论框的toolbar放在主界面上
         findViewById(R.id.toolbar_webComment).bringToFront();
+
+        //
+        mSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+
+            @Override
+            public void onInit(int status) {
+                // TODO Auto-generated method stub
+                if (status == TextToSpeech.SUCCESS) {
+                    int result = mSpeech.setLanguage(Locale.ENGLISH);
+                    if (result == TextToSpeech.LANG_MISSING_DATA
+                            || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Log.e("lanageTag", "not use");
+                    } else {
+
+                        mSpeech.speak("i love you", TextToSpeech.QUEUE_FLUSH,
+                                null);
+                    }
+                }
+            }
+        });
     }
 
     //活动由不可见变为可见时调用
@@ -260,7 +286,10 @@ public class WebActivity extends BaseActivity {
                 Toast.makeText(this, "夜间模式", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.news_feedback:
-                Toast.makeText(this, "举报！", Toast.LENGTH_SHORT).show();
+                // TODO Auto-generated method stub
+                mSpeech.speak(webView.getTitle(),
+                        TextToSpeech.QUEUE_FLUSH, null);
+                Toast.makeText(this, "朗读标题！", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;

@@ -12,7 +12,7 @@ public class DiscoverViewModel extends ViewModel {
 
     public DiscoverViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
+        mText.setValue("This is discover fragment");
     }
 
     public LiveData<String> getText() {

@@ -12,7 +12,7 @@
     <item android:id="@+id/news_setting" android:title="夜间模式"
         app:showAsAction="collapseActionView"
         android:orderInCategory="90"/>
-    <item android:id="@+id/news_feedback" android:title="举报"
+    <item android:id="@+id/news_feedback" android:title="朗读标题"
         app:showAsAction="collapseActionView"
         android:orderInCategory="100"/>
 </menu>
