@@ -289,7 +289,7 @@ public class WebActivity extends AppCompatActivity {
                 // TODO Auto-generated method stub
                 mSpeech.speak(webView.getTitle(),
                         TextToSpeech.QUEUE_FLUSH, null);
-                Toast.makeText(this, "举报！", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "朗读标题！", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
