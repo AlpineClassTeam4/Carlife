@@ -8,9 +8,9 @@
 
     <!--用于指定所有的映射模型列表,声明要配置的映射模型类，注意一定要使用完整的类名-->
     <list>
-        <mapping class="com.alphine.team4.carlife.ui.notifications.NewsInfoBean"></mapping>
-        <mapping class="com.alphine.team4.carlife.ui.notifications.usermodel.UserInfo"></mapping>
-        <mapping class="com.alphine.team4.carlife.ui.notifications.NewsCollectBean"></mapping>
-        <mapping class="com.alphine.team4.carlife.ui.notifications.usermodel.Article"></mapping>
+        <mapping class="com.alphine.team4.carlife.ui.discover.NewsInfoBean"></mapping>
+        <mapping class="com.alphine.team4.carlife.ui.discover.usermodel.UserInfo"></mapping>
+        <mapping class="com.alphine.team4.carlife.ui.discover.NewsCollectBean"></mapping>
+        <mapping class="com.alphine.team4.carlife.ui.discover.usermodel.Article"></mapping>
     </list>
 </litepal>
