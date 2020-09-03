@@ -23,6 +23,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.alphine.team4.carlife.R;
+import com.alphine.team4.carlife.ui.setting.UserFragment;
 
 public class HomeFragment extends Fragment {
 
@@ -38,7 +39,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = getActivity().getPackageManager().getLaunchIntentForPackage("com.qinwang.locationactivity");
                 if(intent != null){
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("points", UserFragment.receiveText);
                     startActivity(intent);
                 }else {
                     Toast.makeText(getActivity(),"导航程序未安装!",Toast.LENGTH_SHORT).show();

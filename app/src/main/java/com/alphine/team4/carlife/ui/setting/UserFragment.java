@@ -37,6 +37,7 @@ import com.alphine.team4.carlife.ISocketBinder;
 import com.alphine.team4.carlife.MainActivity;
 import com.alphine.team4.carlife.R;
 import com.alphine.team4.carlife.ui.login.toolsBeans.DBHelper;
+import com.alphine.team4.carlife.ui.music.MusicService;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.List;
@@ -60,7 +61,6 @@ public class UserFragment extends Fragment implements View.OnClickListener, Comp
     private String mParam1;
     private String mParam2;
 
-
     private static final String TAG = "HomeDate";
     TextView textView;
 
@@ -72,7 +72,7 @@ public class UserFragment extends Fragment implements View.OnClickListener, Comp
     EditText etRemotePort;
     EditText etLocalPort;
 
-    String receiveText;//存储接收数据
+    public static String receiveText;//存储接收数据
     Switch swUdp;
     ToggleButton btStartService;
 
@@ -217,15 +217,16 @@ public class UserFragment extends Fragment implements View.OnClickListener, Comp
 
         String path = getActivity().getFilesDir() + "/"+"user_info.db";
         db = SQLiteDatabase.openOrCreateDatabase(path,null);
-        Cursor cursor = db.query("user_info",null,"user_email=?",
-                new String[]{input_email},
-                null,null,null,null);
-        while (cursor.moveToNext()){
-            nickName = cursor.getString(cursor.getColumnIndex("user_nickname"));
-        }
+
         if(input_email.equals("")){
             textView.setText("未登录");
         }else {
+            Cursor cursor = db.query("user_info",null,"user_email=?",
+                    new String[]{input_email},
+                    null,null,null,null);
+            while (cursor.moveToNext()){
+                nickName = cursor.getString(cursor.getColumnIndex("user_nickname"));
+            }
             textView.setText(nickName+" 已登录");
         }
 
@@ -250,7 +251,9 @@ public class UserFragment extends Fragment implements View.OnClickListener, Comp
                 editor.commit();
 
                 Intent i = new Intent(getActivity(), SocketService.class);
+                Intent i1 = new Intent(getActivity(), MusicService.class);
                 getActivity().stopService(i);
+                getActivity().stopService(i1);
 
                 getActivity().finish();
 
