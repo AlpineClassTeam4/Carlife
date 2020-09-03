@@ -6,14 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".StartActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="366dp"
-        android:layout_height="552dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <com.youth.banner.Banner
+        android:id="@+id/banner_start"
+        android:layout_width="411dp"
+        android:layout_height="703dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/start" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
