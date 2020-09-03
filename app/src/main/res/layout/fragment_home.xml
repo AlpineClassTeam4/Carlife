@@ -37,9 +37,9 @@
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="188dp"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_marginTop="20dp"
-        android:src="@drawable/car"
+        android:src="@drawable/home_car_imgv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
