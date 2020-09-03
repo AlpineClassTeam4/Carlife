@@ -1,4 +1,4 @@
-package com.alphine.team4.carlife.ui.notifications.tools;
+package com.alphine.team4.carlife.ui.discover.tools;
 
 import android.content.Context;
 import android.os.Environment;

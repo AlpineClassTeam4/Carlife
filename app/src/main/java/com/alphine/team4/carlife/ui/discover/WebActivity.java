@@ -1,4 +1,4 @@
-package com.alphine.team4.carlife.ui.notifications;
+package com.alphine.team4.carlife.ui.discover;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -19,7 +19,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 
 import com.alphine.team4.carlife.R;
-import com.alphine.team4.carlife.ui.notifications.tools.BaseActivity;
+import com.alphine.team4.carlife.ui.discover.tools.BaseActivity;
 
 import org.litepal.LitePal;
 

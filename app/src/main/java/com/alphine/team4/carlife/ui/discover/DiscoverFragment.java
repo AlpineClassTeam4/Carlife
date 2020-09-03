@@ -1,4 +1,4 @@
-package com.alphine.team4.carlife.ui.notifications;
+package com.alphine.team4.carlife.ui.discover;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -19,19 +19,19 @@ import java.util.List;
 
 
 
-public class NotificationsFragment extends Fragment {
+public class DiscoverFragment extends Fragment {
 
-    private NotificationsViewModel notificationsViewModel;
-    private MediaPlayer mp;
+    private DiscoverViewModel discoverViewModel;
+    private MediaPlayer mp,op;
 
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        notificationsViewModel =
-                ViewModelProviders.of(this).get(NotificationsViewModel.class);
+        discoverViewModel =
+                ViewModelProviders.of(this).get(DiscoverViewModel.class);
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
-        mp = MediaPlayer.create(this.getActivity(),R.raw.timi);
+        mp = MediaPlayer.create(this.getActivity(),R.raw.world);
         mp.start();
         return root;
 
@@ -60,10 +60,17 @@ public class NotificationsFragment extends Fragment {
             public void OnBannerClick(int position) {
                 Intent i = new Intent(getActivity(),MainActivity.class);
                 startActivity(i);
+                mp.stop();
+                op = MediaPlayer.create(getActivity(),R.raw.timi);
+                op.start();
                 //Toast.makeText(getActivity(), "position"+position, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
 
+    }
 }

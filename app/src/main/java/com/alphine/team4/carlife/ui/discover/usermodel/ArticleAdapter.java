@@ -1,4 +1,4 @@
-package com.alphine.team4.carlife.ui.notifications.usermodel;
+package com.alphine.team4.carlife.ui.discover.usermodel;
 
 import android.content.Context;
 import android.content.Intent;

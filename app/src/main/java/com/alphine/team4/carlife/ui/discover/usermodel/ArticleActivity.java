@@ -1,4 +1,4 @@
-package com.alphine.team4.carlife.ui.notifications.usermodel;
+package com.alphine.team4.carlife.ui.discover.usermodel;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alphine.team4.carlife.R;
-import com.alphine.team4.carlife.ui.notifications.tools.BaseActivity;
+import com.alphine.team4.carlife.ui.discover.tools.BaseActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.litepal.LitePal;

@@ -1,8 +1,7 @@
-package com.alphine.team4.carlife.ui.notifications.tools;
+package com.alphine.team4.carlife.ui.discover.tools;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
 

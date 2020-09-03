@@ -1,4 +1,4 @@
-package com.alphine.team4.carlife.ui.notifications.usermodel;
+package com.alphine.team4.carlife.ui.discover.usermodel;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.alphine.team4.carlife.R;
-import com.alphine.team4.carlife.ui.notifications.NewsCollectBean;
+import com.alphine.team4.carlife.ui.discover.NewsCollectBean;
 
 import java.util.List;
 

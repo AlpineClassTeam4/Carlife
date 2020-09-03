@@ -1,4 +1,4 @@
-package com.alphine.team4.carlife.ui.notifications.usermodel;
+package com.alphine.team4.carlife.ui.discover.usermodel;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,9 +12,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 
 import com.alphine.team4.carlife.R;
-import com.alphine.team4.carlife.ui.notifications.NewsCollectBean;
-import com.alphine.team4.carlife.ui.notifications.WebActivity;
-import com.alphine.team4.carlife.ui.notifications.tools.BaseActivity;
+import com.alphine.team4.carlife.ui.discover.NewsCollectBean;
+import com.alphine.team4.carlife.ui.discover.WebActivity;
+import com.alphine.team4.carlife.ui.discover.tools.BaseActivity;
 
 import org.litepal.LitePal;
 

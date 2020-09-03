@@ -1,4 +1,4 @@
-package com.alphine.team4.carlife.ui.notifications;
+package com.alphine.team4.carlife.ui.discover;
 
 
 import android.content.Intent;
@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,19 +29,18 @@ import androidx.viewpager.widget.ViewPager;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.alphine.team4.carlife.R;
-import com.alphine.team4.carlife.ui.notifications.tools.ActivityCollector;
-import com.alphine.team4.carlife.ui.notifications.tools.BaseActivity;
-import com.alphine.team4.carlife.ui.notifications.tools.DataCleanManager;
-import com.alphine.team4.carlife.ui.notifications.usermodel.ArticleActivity;
-import com.alphine.team4.carlife.ui.notifications.usermodel.LoginActivity;
-import com.alphine.team4.carlife.ui.notifications.usermodel.UserDetailActivity;
-import com.alphine.team4.carlife.ui.notifications.usermodel.UserFavoriteActivity;
-import com.alphine.team4.carlife.ui.notifications.usermodel.UserInfo;
+import com.alphine.team4.carlife.ui.discover.tools.ActivityCollector;
+import com.alphine.team4.carlife.ui.discover.tools.BaseActivity;
+import com.alphine.team4.carlife.ui.discover.tools.DataCleanManager;
+import com.alphine.team4.carlife.ui.discover.usermodel.ArticleActivity;
+import com.alphine.team4.carlife.ui.discover.usermodel.LoginActivity;
+import com.alphine.team4.carlife.ui.discover.usermodel.UserDetailActivity;
+import com.alphine.team4.carlife.ui.discover.usermodel.UserFavoriteActivity;
+import com.alphine.team4.carlife.ui.discover.usermodel.UserInfo;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import org.litepal.LitePal;
-import org.litepal.tablemanager.Connector;
 
 import java.io.BufferedReader;
 import java.io.File;
