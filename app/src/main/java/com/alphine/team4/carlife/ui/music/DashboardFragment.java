@@ -1,10 +1,13 @@
 package com.alphine.team4.carlife.ui.music;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,7 +24,8 @@ import com.alphine.team4.carlife.ui.music.activity.MusicActivity;
 public class DashboardFragment extends Fragment implements View.OnClickListener {
 
     private DashboardViewModel dashboardViewModel;
-    ImageView ivFrgmusic,ivFrglike;
+    ImageView ivFrgmusic,ivFrglike,ivFrghead;
+    private ObjectAnimator objectAnimator = null;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -31,13 +35,29 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         final TextView textView = root.findViewById(R.id.text_dashboard);
         root.findViewById(R.id.frg_music_imgv).setOnClickListener(this);
         root.findViewById(R.id.frg_like_imgv).setOnClickListener(this);
+        ivFrghead = root.findViewById(R.id.frg_head_imgv);
         dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
         });
+        animation();
         return root;
+    }
+
+    public void animation(){
+        //实例化，设置旋转对象
+        objectAnimator = ObjectAnimator.ofFloat(ivFrghead, "rotation", 0f, 360f);
+        //设置转一圈要多长时间
+        objectAnimator.setDuration(18000);
+        //设置旋转速率
+        objectAnimator.setInterpolator(new LinearInterpolator());
+        //设置循环次数 -1为一直循环
+        objectAnimator.setRepeatCount(-1);
+        //设置转一圈后怎么转
+        objectAnimator.setRepeatMode(ValueAnimator.RESTART);
+        objectAnimator.start();
     }
 
     @Override
