@@ -49,17 +49,6 @@ public class MusicService extends Service {
             }
         }
     }
-
-    private void preparemusic(String path) {
-        mediaPlayer.reset();
-        try {
-            mediaPlayer.setDataSource(path);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static final String TAG = "MusicService";
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
