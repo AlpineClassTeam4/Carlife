@@ -91,6 +91,7 @@
     <string name="exit">退出</string>
     <string name="night_mode">夜间模式</string>
     <string name="read_title">朗读标题</string>
+    <string name="time">Time</string>
 
 
 </resources>

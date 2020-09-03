@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="5dp"
-            android:text="Time"
+            android:text="@string/time"
             android:layout_toRightOf="@+id/article_image"
             android:layout_below="@+id/article_name"
             />
