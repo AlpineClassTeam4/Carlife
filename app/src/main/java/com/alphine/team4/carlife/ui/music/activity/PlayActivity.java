@@ -48,7 +48,6 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     ImageView ivBg,ivDisc,ivNeedle;
     SeekBar sbProgress;
     private int position;
-    private int totaltime;
     private int i = 0;
     private int playMode = 0;
     private int buttonWhich = 0;

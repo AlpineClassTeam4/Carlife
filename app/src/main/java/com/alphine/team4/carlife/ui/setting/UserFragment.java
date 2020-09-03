@@ -105,17 +105,11 @@ public class UserFragment extends Fragment implements View.OnClickListener, Comp
 
         }
     };
-    Dataaidl dataaidl = new Dataaidl() {
-        @Override
-        public String receiveData() throws RemoteException {
-            return receiveText;
-        }
 
-        @Override
-        public IBinder asBinder() {
-            return null;
-        }
-    };
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 
     IOnSocketReceivedListener receivedListener = new IOnSocketReceivedListener.Stub() {
         @Override
