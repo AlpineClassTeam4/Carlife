@@ -31,7 +31,7 @@ public class DiscoverFragment extends Fragment {
         discoverViewModel =
                 ViewModelProviders.of(this).get(DiscoverViewModel.class);
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
-        mp = MediaPlayer.create(this.getActivity(),R.raw.world);
+        mp = MediaPlayer.create(this.getActivity(),R.raw.meng);
         mp.start();
         return root;
 
@@ -71,6 +71,7 @@ public class DiscoverFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        mp.stop();
 
     }
 }
