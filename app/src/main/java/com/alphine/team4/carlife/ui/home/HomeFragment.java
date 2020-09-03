@@ -60,7 +60,8 @@ public class HomeFragment extends Fragment {
                 intent.setComponent(componentName);
                 Uri uri = Uri.parse("com.qinwang.locationactivity.activity.MainActivity");
                 intent.setData(uri);
-                intent.putExtra("points","38.894473,121.555926");
+                //intent.putExtra("points","38.894473,121.555926");
+                intent.putExtra("points",receiveText);
                 Bundle bundle  =intent.getExtras();
                 if (bundle == null){
                     Toast.makeText(getActivity(),
