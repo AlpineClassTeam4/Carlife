@@ -24,7 +24,7 @@ public class SongPlayActivity extends AppCompatActivity {
     private static final String TAG ="SongPlayActivity" ;
     private String songId;
     private SongInfo songInfo;
-    ImageView ivCover,ivPlay,ivPrev,ivNext;
+    ImageView ivCover,ivPlay,ivPrev,ivNext,ivBack;
     TextView tvTitle,tvArtist;
     SeekBar seekBar;
 
@@ -36,6 +36,7 @@ public class SongPlayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_play);
 
+        ivBack = findViewById(R.id.sp_back_imgv);
         ivCover = findViewById(R.id.sp_cover_imgv);
         ivPlay = findViewById(R.id.sp_play_imgv);
         ivPrev = findViewById(R.id.sp_prev_imgv);
@@ -83,6 +84,13 @@ public class SongPlayActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 StarrySky.with().skipToNext();
+            }
+        });
+
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
@@ -148,5 +156,4 @@ public class SongPlayActivity extends AppCompatActivity {
         seekTimer.cancel();
         StarrySky.with().removePlayerEventListener(eventListener);
     }
-
 }
