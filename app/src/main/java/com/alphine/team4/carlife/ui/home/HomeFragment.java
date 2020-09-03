@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -16,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +46,7 @@ public class HomeFragment extends Fragment {
     ISocketBinder socketBinder;
     String receiveText;
     Intent i;
+    Switch swcarlock,swcarstart,swcardoor,swbackbox;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
@@ -52,15 +55,28 @@ public class HomeFragment extends Fragment {
         root.findViewById(R.id.button_GPS).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = getActivity().getPackageManager().getLaunchIntentForPackage("com.qinwang.locationactivity");
-                if(intent != null){
-                    intent.putExtra("points",receiveText);
-                    startActivity(intent);
+                Intent intent = new Intent();
+                ComponentName componentName = new ComponentName("com.qinwang.locationactivity","com.qinwang.locationactivity.activity.MainActivity");
+                intent.setComponent(componentName);
+                Uri uri = Uri.parse("com.qinwang.locationactivity.activity.MainActivity");
+                intent.setData(uri);
+                intent.putExtra("points","38.894473,121.555926");
+                Bundle bundle  =intent.getExtras();
+                if (bundle == null){
+                    Toast.makeText(getActivity(),
+                            "请先获取汽车位置",
+                            Toast.LENGTH_LONG).show();
                 }else {
-                    Toast.makeText(getActivity(),"导航程序未安装!",Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
                 }
             }
         });
+
+        swcarlock = root.findViewById(R.id.sw_carlock);
+        swcarstart = root.findViewById(R.id.sw_carstart);
+        swcardoor = root.findViewById(R.id.sw_cardoor);
+        swbackbox = root.findViewById(R.id.sw_carbackbox);
+
         return root;
     }
 
@@ -68,9 +84,9 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         i = new Intent(getActivity(), SocketService.class);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             getActivity().startForegroundService(i);
-        }else {
+        }else{
             getActivity().startService(i);
         }
         getActivity().bindService(i, connection, BIND_AUTO_CREATE);
@@ -79,13 +95,38 @@ public class HomeFragment extends Fragment {
 
     IOnSocketReceivedListener receivedListener = new IOnSocketReceivedListener.Stub() {
         @Override
-        public void onReceived(String data) throws RemoteException {
+        public void onReceived(String data) throws RemoteException{
             receiveText = data;
             Log.e("TAG", "onReceived: "+data);
+            if (receiveText.equals("车门上锁")){
+                swcarlock.setChecked(true);
+                swcarlock.setText("车门解锁");
+            }else if (receiveText.equals("车门解锁")){
+                swcarlock.setChecked(false);
+                swcarlock.setText("车门上锁");
+            }else if (receiveText.equals("车辆启动")){
+                swcarstart.setChecked(true);
+                swcarstart.setText("车辆已启动");
+            }else if (receiveText.equals("车辆关闭")){
+                swcarstart.setChecked(false);
+                swcarstart.setText("车辆未启动");
+            }else if (receiveText.equals("打开后备箱")){
+                swbackbox.setChecked(true);
+                swbackbox.setText("关闭后备箱");
+            }else if (receiveText.equals("关闭后备箱")){
+                swbackbox.setChecked(false);
+                swbackbox.setText("打开后备箱");
+            }else if (receiveText.equals("车门未关闭")){
+                swbackbox.setChecked(true);
+                swbackbox.setText("车门未关闭");
+            }else if (receiveText.equals("车门已关闭")){
+                swbackbox.setChecked(false);
+                swbackbox.setText("车门已关闭");
+            }
         }
 
         @Override
-        public void onEvent(int e) throws RemoteException {
+        public void onEvent(int e) throws RemoteException{
         }
     };
 

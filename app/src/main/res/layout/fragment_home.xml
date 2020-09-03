@@ -100,10 +100,10 @@
         app:layout_constraintEnd_toEndOf="@+id/sw_cardoor"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/sw_cardoor"
-        app:layout_constraintTop_toBottomOf="@+id/sw_carleft" />
+        app:layout_constraintTop_toBottomOf="@+id/sw_carlock" />
 
     <Switch
-        android:id="@+id/sw_carleft"
+        android:id="@+id/sw_carlock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cardoor_locked"
