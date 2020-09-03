@@ -79,7 +79,6 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
                         tvLocalmusic.setTextColor(getResources().getColor(R.color.grey));
                         break;
                 }
-
             }
 
             @Override
