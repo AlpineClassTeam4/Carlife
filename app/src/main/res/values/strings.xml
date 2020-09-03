@@ -40,5 +40,7 @@
     <string name="register">注册</string>
     <string name="e_mail">邮箱</string>
     <string name="password">密码</string>
+    <string name="local_music">本地音乐</string>
+    <string name="online_music">在线音乐</string>
 
 </resources>

@@ -34,16 +34,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="本地音乐"
+                    android:text="@string/local_music"
                     android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/tv_onlinemusic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:gravity="center"
-                    android:text="在线音乐"
+                    android:text="@string/online_music"
                     android:textSize="15sp" />
             </LinearLayout>
 
@@ -54,7 +54,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_menu_search" />
+                app:srcCompat="@drawable/ic_menu_search"
+                android:contentDescription="TODO" />
 
             <ImageView
                 android:id="@+id/iv_back"
