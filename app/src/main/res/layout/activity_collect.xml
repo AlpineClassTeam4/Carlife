@@ -30,7 +30,7 @@
                 android:id="@+id/col_title_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="我喜欢的音乐"
+                android:text="@string/like_music"
                 android:textColor="@color/colorWhite"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"

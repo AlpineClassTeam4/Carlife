@@ -74,27 +74,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     >
+
                     <TextView
                         android:id="@+id/article_author11"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_margin="10dp"
-                        android:text="作者："
+                        android:layout_weight="1"
+                        android:text="@string/writer"
                         android:textColor="@color/colorBlack"
-                        android:textSize="15sp"
-                        />
+                        android:textSize="15sp" />
 
                     <TextView
                         android:id="@+id/article_time11"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
                         android:layout_margin="10dp"
-                        android:text="发布时间："
+                        android:layout_weight="2"
+                        android:text="@string/release_time"
                         android:textColor="@color/colorBlack"
-                        android:textSize="15sp"
-                        />
+                        android:textSize="15sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
