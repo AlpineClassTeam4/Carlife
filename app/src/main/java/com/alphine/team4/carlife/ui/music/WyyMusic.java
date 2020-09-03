@@ -33,7 +33,7 @@ import static com.alphine.team4.carlife.ui.music.utils.RequestSongInfoIntercepto
 public class WyyMusic {
     private static final String TAG = "WywMusic";
     private static final String WYY_ACCOUNT = "15542303785";
-    private static final String WYY_PASSWORD = "honey.16";
+    private static final String WYY_PASSWORD = "echo.777";
     String uid = null;
     private List<SongInfo> playList = new ArrayList<>();
     private Context context;
