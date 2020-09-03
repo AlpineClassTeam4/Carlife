@@ -1,4 +1,4 @@
-package com.alphine.team4.carlife.ui.notifications;
+package com.alphine.team4.carlife.ui.discover;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;

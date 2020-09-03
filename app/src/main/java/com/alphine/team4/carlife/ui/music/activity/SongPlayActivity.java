@@ -72,6 +72,20 @@ public class SongPlayActivity extends AppCompatActivity {
             }
         });
 
+        ivPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StarrySky.with().skipToPrevious();
+            }
+        });
+
+        ivNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StarrySky.with().skipToNext();
+            }
+        });
+
         StarrySky.with().addPlayerEventListener(eventListener);
         if(!StarrySky.with().isCurrMusicIsPlaying(songId)){
             StarrySky.with().playMusicById(songId);

@@ -1,4 +1,4 @@
-package com.alphine.team4.carlife.ui.notifications.usermodel;
+package com.alphine.team4.carlife.ui.discover.usermodel;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -32,7 +32,7 @@ import androidx.core.content.ContextCompat;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.alphine.team4.carlife.R;
-import com.alphine.team4.carlife.ui.notifications.tools.BaseActivity;
+import com.alphine.team4.carlife.ui.discover.tools.BaseActivity;
 
 import org.litepal.LitePal;
 

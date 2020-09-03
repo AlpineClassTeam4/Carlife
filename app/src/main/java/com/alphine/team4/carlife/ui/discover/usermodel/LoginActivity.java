@@ -1,4 +1,4 @@
-package com.alphine.team4.carlife.ui.notifications.usermodel;
+package com.alphine.team4.carlife.ui.discover.usermodel;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,8 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.alphine.team4.carlife.R;
-import com.alphine.team4.carlife.ui.notifications.MainActivity;
-import com.alphine.team4.carlife.ui.notifications.tools.BaseActivity;
+import com.alphine.team4.carlife.ui.discover.MainActivity;
+import com.alphine.team4.carlife.ui.discover.tools.BaseActivity;
 
 import org.litepal.LitePal;
 

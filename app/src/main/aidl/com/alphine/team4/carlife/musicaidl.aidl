@@ -14,6 +14,7 @@ interface musicaidl {
     void musicstart();
     void musicstop();
     void musicpause();
+    void musicreset();
     void musicnext(String path);
     void musicprev(String path);
     void musicseekto(int progress);
