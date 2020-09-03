@@ -136,6 +136,9 @@ public class LocalMusicFragment extends Fragment {
 
         adapter = new MusicAdapter(getActivity(), musicList); //创建MusicAdapter的对象，实现自定义适配器的创建
         listView.setAdapter(adapter);                         //listView绑定适配器
+
+        //更新媒体库（添加/删除文件路径）
+        updateMedia(Environment.getExternalStorageDirectory().getAbsolutePath()+"/Music/叶炫清 - 九张机.mp3");
         return view;
     }
     // 权限代码
@@ -147,6 +150,19 @@ public class LocalMusicFragment extends Fragment {
         }
     }
 // 权限代码结束
+
+    //更新媒体库
+    private void updateMedia(String filename)//filename是我们的文件全名，包括后缀哦
+    {
+        MediaScannerConnection.scanFile(getActivity(),
+                new String[] { filename }, null,
+                new MediaScannerConnection.OnScanCompletedListener() {
+                    public void onScanCompleted(String path, Uri uri) {
+                        Log.i("ExternalStorage", "Scanned " + path + ":");
+                        Log.i("ExternalStorage", "-> uri=" + uri);
+                    }
+                });
+    }
 
     //nitListView()实现对手机中MediaDataBase的扫描
     private void initListView() {

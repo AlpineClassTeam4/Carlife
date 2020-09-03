@@ -38,20 +38,24 @@
         <activity
             android:name=".ui.setting.SettingActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name=".ui.music.activity.CollectActivity" />
-        <activity android:name=".ui.music.activity.PlayActivity" />
+        <activity android:name=".ui.music.activity.CollectActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".ui.music.activity.SongPlayActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".ui.music.activity.PlayActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".ui.music.activity.MusicActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name=".ui.discover.usermodel.EditArticleActivity" />
-        <activity android:name=".ui.discover.usermodel.ArticleDetailActivity" />
-        <activity android:name=".ui.discover.usermodel.ArticleActivity" />
-        <activity android:name=".ui.discover.usermodel.UserFavoriteActivity" />
-        <activity android:name=".ui.discover.usermodel.UserDetailActivity" />
-        <activity android:name=".ui.discover.usermodel.RegisterActivity" />
-        <activity android:name=".ui.discover.usermodel.LoginActivity" />
-        <activity android:name=".ui.discover.WebActivity" />
-        <activity android:name=".ui.discover.MainActivity" />
+        <activity android:name=".ui.notifications.usermodel.EditArticleActivity" />
+        <activity android:name=".ui.notifications.usermodel.ArticleDetailActivity" />
+        <activity android:name=".ui.notifications.usermodel.ArticleActivity" />
+        <activity android:name=".ui.notifications.usermodel.UserFavoriteActivity" />
+        <activity android:name=".ui.notifications.usermodel.UserDetailActivity" />
+        <activity android:name=".ui.notifications.usermodel.RegisterActivity" />
+        <activity android:name=".ui.notifications.usermodel.LoginActivity" />
+        <activity android:name=".ui.notifications.WebActivity" />
+        <activity android:name=".ui.notifications.MainActivity" />
         <activity android:name=".ui.login.LoginSystemActivity"></activity>
         <activity android:name=".ui.login.RegisterSystemActivity" />
         <activity
