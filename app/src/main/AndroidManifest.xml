@@ -35,6 +35,10 @@
             android:enabled="true"
             android:exported="true"></service>
 
+        <service android:name=".ui.setting.SocketService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity
             android:name=".ui.setting.SettingActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
@@ -47,15 +51,15 @@
         <activity
             android:name=".ui.music.activity.MusicActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name=".ui.notifications.usermodel.EditArticleActivity" />
-        <activity android:name=".ui.notifications.usermodel.ArticleDetailActivity" />
-        <activity android:name=".ui.notifications.usermodel.ArticleActivity" />
-        <activity android:name=".ui.notifications.usermodel.UserFavoriteActivity" />
-        <activity android:name=".ui.notifications.usermodel.UserDetailActivity" />
-        <activity android:name=".ui.notifications.usermodel.RegisterActivity" />
-        <activity android:name=".ui.notifications.usermodel.LoginActivity" />
-        <activity android:name=".ui.notifications.WebActivity" />
-        <activity android:name=".ui.notifications.MainActivity" />
+        <activity android:name="com.alphine.team4.carlife.ui.discover.usermodel.EditArticleActivity" />
+        <activity android:name="com.alphine.team4.carlife.ui.discover.usermodel.ArticleDetailActivity" />
+        <activity android:name="com.alphine.team4.carlife.ui.discover.usermodel.ArticleActivity" />
+        <activity android:name="com.alphine.team4.carlife.ui.discover.usermodel.UserFavoriteActivity" />
+        <activity android:name="com.alphine.team4.carlife.ui.discover.usermodel.UserDetailActivity" />
+        <activity android:name="com.alphine.team4.carlife.ui.discover.usermodel.RegisterActivity" />
+        <activity android:name="com.alphine.team4.carlife.ui.discover.usermodel.LoginActivity" />
+        <activity android:name="com.alphine.team4.carlife.ui.discover.WebActivity" />
+        <activity android:name="com.alphine.team4.carlife.ui.discover.MainActivity" />y
         <activity android:name=".ui.login.LoginSystemActivity"></activity>
         <activity android:name=".ui.login.RegisterSystemActivity" />
         <activity

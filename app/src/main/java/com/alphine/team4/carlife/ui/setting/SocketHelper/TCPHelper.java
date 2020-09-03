@@ -18,7 +18,7 @@ public class TCPHelper {
     private final String TAG = "TCPHelper";
     private int localPort = 7000;
     private int remotePort = 7000;
-    private String remoteIP = "127.0.0.1";
+    private String remoteIP = "192.168.43.1";
     private Socket mSocket = null;
     private OutputStream outputStream = null;
     private InputStream inputStream = null;
