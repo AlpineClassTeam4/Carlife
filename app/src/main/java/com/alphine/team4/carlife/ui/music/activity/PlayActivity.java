@@ -48,6 +48,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     ImageView ivBg,ivDisc,ivNeedle;
     SeekBar sbProgress;
     private int position;
+    private int totaltime;
     private int i = 0;
     private int playMode = 0;
     private int buttonWhich = 0;
@@ -57,11 +58,20 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     private RotateAnimation rotateAnimation = null;
     private RotateAnimation rotateAnimation2 = null;
     DBHelper dbHelper;
+
+    private static final String TAG="123";
+
     musicaidl musicMyBinder;
 
     @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
         musicMyBinder = (musicaidl) service;
+        //音乐来自哪个列表
+        if(musicWhich == 0){
+            prevAndnextplaying(Common.musicList.get(position).path);
+        }else {
+            prevAndnextplaying(Common.dbmusicList.get(position).path);
+        }
     }
 
     //Handler实现向主线程进行传值
@@ -88,12 +98,6 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = getIntent();                                           //通过getIntent()方法实现intent信息的获取
         position = intent.getIntExtra("position", 0);        //获取position
         musicWhich = intent.getIntExtra("musicWhich",0);     //获取音乐来源  数据库/媒体库
-        //音乐来自哪个列表
-        if(musicWhich == 0){
-            prevAndnextplaying(Common.musicList.get(position).path);
-        }else {
-            prevAndnextplaying(Common.dbmusicList.get(position).path);
-        }
         sbProgress.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {               //seekbar设置监听，实现指哪放到哪
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -344,6 +348,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                         objectAnimator.pause();
                         ivNeedle.startAnimation(rotateAnimation2);
                         prevAndnextplaying(Common.musicList.get(position).path);
+                        Log.e(TAG, "setBtnMode: "+Common.musicList.get(position).path);
                         try {
                             musicMyBinder.musicprev(Common.musicList.get(position).path);
                         } catch (RemoteException e) {
@@ -354,6 +359,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                         objectAnimator.pause();
                         ivNeedle.startAnimation(rotateAnimation2);
                         prevAndnextplaying(Common.musicList.get(position).path);
+                        Log.e(TAG, "setBtnMode: "+Common.musicList.get(position).path);
                         try {
                             musicMyBinder.musicnext(Common.musicList.get(position).path);
                         } catch (RemoteException e) {

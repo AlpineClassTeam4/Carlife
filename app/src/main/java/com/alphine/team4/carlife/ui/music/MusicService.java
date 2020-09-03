@@ -37,16 +37,12 @@ public class MusicService extends Service {
 
     private void prevAndnextplaying(String path) {
         if (path!=null){
-            Log.e(TAG, "prevAndnextplaying: 0" );
+
             try {
-                //mediaPlayer.reset();
-                Log.e(TAG, "prevAndnextplaying: 1" );
+                mediaPlayer.reset();
                 mediaPlayer.setDataSource(path);
-                Log.e(TAG, "prevAndnextplaying: 2" );
                 mediaPlayer.prepare();                   // 准备
-                Log.e(TAG, "prevAndnextplaying: 3" );
                 mediaPlayer.start();                        // 启动
-                Log.e(TAG, "prevAndnextplaying: 4" );
             } catch (IllegalArgumentException | SecurityException | IllegalStateException
                     | IOException e) {
                 e.printStackTrace();
