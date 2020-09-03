@@ -32,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.alphine.team4.carlife.Dataaidl;
 import com.alphine.team4.carlife.IOnSocketReceivedListener;
 import com.alphine.team4.carlife.ISocketBinder;
 import com.alphine.team4.carlife.R;
@@ -104,6 +105,18 @@ public class UserFragment extends Fragment implements View.OnClickListener, Comp
 
         }
     };
+    Dataaidl dataaidl = new Dataaidl() {
+        @Override
+        public String receiveData() throws RemoteException {
+            return receiveText;
+        }
+
+        @Override
+        public IBinder asBinder() {
+            return null;
+        }
+    };
+
     IOnSocketReceivedListener receivedListener = new IOnSocketReceivedListener.Stub() {
         @Override
         public void onReceived(String data) throws RemoteException {
